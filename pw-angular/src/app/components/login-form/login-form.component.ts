@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormControlName, Validators } from '@angular/forms';
+import { interval, takeWhile } from 'rxjs';
 import { Login } from 'src/app/interfaces/login';
 
 @Component({
@@ -7,7 +8,7 @@ import { Login } from 'src/app/interfaces/login';
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss']
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements OnInit{
 
 
   emailError: string | null = null;
@@ -18,6 +19,21 @@ export class LoginFormComponent {
 
   constructor(private fb: FormBuilder){
   }
+
+  ngOnInit(): void {
+    this.startTimer()
+  }
+
+  startTimer() {
+  interval(10000).pipe(
+    takeWhile(() => true)
+  ).subscribe(() => {
+    this.loginForm.reset()
+
+    //TODO -
+    // Aggiungere popup service
+  });
+}
 
   loginForm = this.fb.group({
     email: new FormControl("", [Validators.required]),

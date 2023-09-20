@@ -1,1 +1,5 @@
-<p>login works!</p>
+<div class="container d-flex justify-content-center mt-5">
+  <div class="col-12" style="max-width: 400px;">
+    <app-login-form (loginEmit)="doLogin($event)" [loginErrors]="loginErrors"></app-login-form>
+  </div>
+</div>

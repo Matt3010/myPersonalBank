@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Login } from 'src/app/interfaces/login';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -8,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent {
 
-  constructor(private authSrv: AuthService){
+  constructor(private authSrv: AuthService, private route: Router){
   }
 
   loginErrors: any | null = null
@@ -16,11 +17,9 @@ export class LoginComponent {
   doLogin(loginPayload: Login){
     this.authSrv.login(loginPayload).subscribe(
       (res)=>{
-          //TODO - 
-          //Loggato correttamente
-          // Service popup loggato
-          // Redirect alla home (Ricordarsi il guard // capisco come funziona il fetchUser)
-      },
+          //TODO - Service popup loggato
+          this.route.navigateByUrl("/home")
+        },
       (err)=>{
         console.log(err)
           this.loginErrors = err

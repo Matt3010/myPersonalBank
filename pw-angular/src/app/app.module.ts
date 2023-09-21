@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './pages/login/login.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
-
+import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
@@ -22,11 +21,11 @@ import { ImgAccountComponent } from './components/img-account/img-account.compon
   declarations: [
     AppComponent,
     LoginComponent,
-    RegistrationComponent,
+    RegistrationComponent, 
     LoginFormComponent,
     HomeComponent,
     NavbarComponent,
-    ImgAccountComponent,
+    ImgAccountComponent,RegistrationFormComponent
 
   ],
   imports: [

@@ -1,0 +1,62 @@
+<div class="card">
+    <div class="row">
+      <form [formGroup]="registrationForm" (ngSubmit)="emitRegistration()">
+        <div class="col-12">
+          <div class="row mb-4">
+            <div class="col-12">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control" id="email" formControlName="email">
+              <div *ngIf="emailError" class="text-danger">
+                {{ emailError }}
+              </div>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-12">
+              <label for="password">Password:</label>
+              <input type="password" class="form-control" id="password" formControlName="password">
+              <div *ngIf="passwordError" class="text-danger">
+                {{ passwordError }}
+              </div>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-12">
+              <label for="confirmPassword">Conferma Password:</label>
+              <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword">
+              <div *ngIf="confirmPasswordError" class="text-danger">
+                {{ confirmPasswordError }}
+              </div>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-12">
+              <label for="nomeTitolare">Nome Titolare:</label>
+              <input type="text" class="form-control" id="firstName" formControlName="firstName">
+              <div *ngIf="nomeTitolareError" class="text-danger">
+                {{ nomeTitolareError }}
+              </div>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-12">
+              <label for="cognomeTitolare">Cognome Titolare:</label>
+              <input type="text" class="form-control" id="lastName" formControlName="lastName">
+              <div *ngIf="cognomeTitolareError" class="text-danger">
+                {{ cognomeTitolareError }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary" >Registrati</button>
+            </div>
+          </div>
+          <div class="pt-3" *ngIf="registrationErrors !== null">
+            <small class="text-danger">{{ registrationErrors.error }}</small>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  

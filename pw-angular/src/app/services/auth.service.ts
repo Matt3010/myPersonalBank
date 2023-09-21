@@ -4,6 +4,8 @@ import { Router } from "@angular/router";
 import { BehaviorSubject, Observable, catchError, map, of, tap } from "rxjs"
 import { JWTService } from "./jwt.service";
 import { Login } from "../interfaces/login";
+import { Registration } from '../interfaces/registration';
+
 
 export interface User {
   id: string;
@@ -26,6 +28,19 @@ export class AuthService {
       this.fetchUser();
     }
   }
+
+  register(registrationData: Registration): Observable<any> {
+    return this.http.post<any>('/api/register', registrationData)
+    .pipe(
+      tap(res => this.jwtSrv.setToken(res.token)),
+      tap(res => this._currentUser$.next(res.user)),
+      catchError(error => {
+        console.error('Errore durante la registrazione:', error);
+        throw error;
+      })
+    );
+  }
+ 
 
   isLoggedIn() {
     return this.jwtSrv.hasToken();

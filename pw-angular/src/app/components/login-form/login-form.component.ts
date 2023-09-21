@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormControlName, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { interval, takeWhile } from 'rxjs';
+import { interval, take, takeWhile } from 'rxjs';
 import { Login } from 'src/app/interfaces/login';
 
 @Component({
@@ -17,29 +18,39 @@ export class LoginFormComponent implements OnInit{
 
   @Output() loginEmit = new EventEmitter<Login>()
 
-  constructor(private fb: FormBuilder, private toastr: ToastrService) {
+  constructor(private fb: FormBuilder, private toastr: ToastrService, private route: Router) {
   }
 
-  ngOnInit(): void {
-    this.startTimer()
-  }
+ngOnInit(): void {
+  this.loginForm.valueChanges.pipe(
+    take(1)
+  ).subscribe(res => {
+    if (res) {
+      this.startTimer();
+    }
+  });
+}
+
 
   startTimer() {
 
     setTimeout(()=>{
-      this.toastr.info("reset in 20s", "My personal Bank")
+      this.toastr.info("Reset in 20s", "My personal Bank")
     }, 10000)
 
     setTimeout(()=>{
-      this.toastr.info("reset in 10s", "My personal Bank")
+      this.toastr.info("Reset in 10s", "My personal Bank")
     }, 20000)
 
-    interval(30000).pipe(
-      takeWhile(() => true)
-    ).subscribe(() => {
+    setTimeout(()=>{
       this.loginForm.reset()
-      this.toastr.warning("Page has been resetted for inactivity", "My personal Bank")
-    });
+      this.toastr.info("Page resetted", "My personal Bank")    },
+       30000)
+
+    setTimeout(()=>{
+      window.location.reload()
+    },
+       35000)
 }
 
   loginForm = this.fb.group({
@@ -59,9 +70,14 @@ export class LoginFormComponent implements OnInit{
       };
       this.loginEmit.emit(loginPayload);
     } else {
-      this.emailError = this.loginForm.get('email')?.hasError('required') ? 'Field is required' : null;
-      this.passwordError = this.loginForm.get('password')?.hasError('required') ? 'Field is required' : null;
+      this.emailError = this.loginForm.get('email')?.hasError('required') ? '*' : null;
+      this.passwordError = this.loginForm.get('password')?.hasError('required') ? '*' : null;
     }
+  }
+
+  goToRegistration(){
+    this.toastr.clear()
+    this.route.navigateByUrl("registration")
   }
 }
 

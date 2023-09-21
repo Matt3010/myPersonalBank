@@ -1,0 +1,39 @@
+.card {
+  background-color: transparent;
+}
+
+input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: solid rgb(138, 138, 138) 1px;
+  border-radius: 0;
+  position: relative;
+  z-index: 1;
+  width: 400px;
+  margin-bottom: 20px;
+}
+
+input:focus {
+
+  outline: 0;
+  background-color: #dceb73;
+  box-shadow: none;
+}
+
+.button-started {
+  border-radius: 15px;
+  background-color: #dceb73;
+  font-size: 16px;
+  box-shadow:
+    0 0 50px 1px #ffffff,
+    0 0 90px 2px #dceb73,
+    0 0 130px 2px #0ff;
+  z-index: -1;
+  height: 40px;
+  width: 100px;
+}
+
+
+label {
+  font-size: 13px;
+}

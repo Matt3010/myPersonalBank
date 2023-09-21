@@ -29,18 +29,15 @@ export class AuthService {
     }
   }
 
-  register(registrationData: Registration): Observable<any> {
+  register(registrationData: Registration): Observable<Registration> {
     return this.http.post<any>('/api/register', registrationData)
     .pipe(
-      tap(res => this.jwtSrv.setToken(res.token)),
-      tap(res => this._currentUser$.next(res.user)),
       catchError(error => {
-        console.error('Errore durante la registrazione:', error);
         throw error;
       })
     );
   }
- 
+
 
   isLoggedIn() {
     return this.jwtSrv.hasToken();

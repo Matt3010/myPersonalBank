@@ -1,62 +1,42 @@
 <div class="card">
-    <div class="row">
-      <form [formGroup]="registrationForm" (ngSubmit)="emitRegistration()">
-        <div class="col-12">
-          <div class="row mb-4">
-            <div class="col-12">
-              <label for="email">Email:</label>
-              <input type="email" class="form-control" id="email" formControlName="email">
-              <div *ngIf="emailError" class="text-danger">
-                {{ emailError }}
-              </div>
+    <div class="card-body">
+        <form [formGroup]="registrationForm" (ngSubmit)="emitRegistration()">
+            <h6 class="card-title fs-1">Sign up!</h6>
+            <div class="form-group">
+                <label for="email"><span class="text-danger">{{ emailError }} </span> Email:</label>
+                <input type="email" class="form-control" id="email" formControlName="email">
             </div>
-          </div>
-          <div class="row mb-4">
-            <div class="col-12">
-              <label for="password">Password:</label>
-              <input type="password" class="form-control" id="password" formControlName="password">
-              <div *ngIf="passwordError" class="text-danger">
-                {{ passwordError }}
-              </div>
+            <div class="form-group">
+                <label for="password"><span class="text-danger">{{ passwordError }} </span>Password:</label>
+                <input type="password" class="form-control" id="password" formControlName="password">
             </div>
-          </div>
-          <div class="row mb-4">
-            <div class="col-12">
-              <label for="confirmPassword">Conferma Password:</label>
-              <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword">
-              <div *ngIf="confirmPasswordError" class="text-danger">
-                {{ confirmPasswordError }}
-              </div>
+            <div class="form-group">
+                <label for="confirmPassword"><span class="text-danger">{{ confirmPasswordError }} </span>Conferma Password:</label>
+                <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword">
+                <div *ngIf="confirmPasswordError" class="text-danger">
+                </div>
             </div>
-          </div>
-          <div class="row mb-4">
-            <div class="col-12">
-              <label for="nomeTitolare">Nome Titolare:</label>
-              <input type="text" class="form-control" id="firstName" formControlName="firstName">
-              <div *ngIf="nomeTitolareError" class="text-danger">
-                {{ nomeTitolareError }}
-              </div>
+            <div class="form-group">
+                <label for="nomeTitolare"><span class="text-danger">{{ nomeTitolareError }} </span>Nome Titolare:</label>
+                <input type="text" class="form-control" id="firstName" formControlName="firstName">
             </div>
-          </div>
-          <div class="row mb-4">
-            <div class="col-12">
-              <label for="cognomeTitolare">Cognome Titolare:</label>
-              <input type="text" class="form-control" id="lastName" formControlName="lastName">
-              <div *ngIf="cognomeTitolareError" class="text-danger">
-                {{ cognomeTitolareError }}
-              </div>
+            <div class="form-group">
+                <label for="cognomeTitolare"><span class="text-danger">{{ cognomeTitolareError }} </span>Cognome Titolare:</label>
+                <input type="text" class="form-control" id="lastName" formControlName="lastName">
+                <div *ngIf="cognomeTitolareError" class="text-danger">
+                </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-12">
-              <button type="submit" class="btn btn-primary" >Registrati</button>
+           <div class="row m-0">
+                    <div class="col-auto p-0 me-2">
+                        <button type="submit" class="btn button-started">Sign up</button>
+                    </div>
+                    <div class="col-auto m-0 p-0">
+                        <button (click)="goToLogin()" class="btn bg-body-secondary button-started bg-transparent" style="box-shadow: none; border: solid hsl(67, 82%, 50%) 2px">Log in</button>
+                    </div>
+                </div>
+            <div class="pt-3" *ngIf="registrationErrors !== null">
+                <small class="text-danger">{{ registrationErrors.error }}</small>
             </div>
-          </div>
-          <div class="pt-3" *ngIf="registrationErrors !== null">
-            <small class="text-danger">{{ registrationErrors.error }}</small>
-          </div>
-        </div>
-      </form>
+        </form>
     </div>
-  </div>
-  
+</div>

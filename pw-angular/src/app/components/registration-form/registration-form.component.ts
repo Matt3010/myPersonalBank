@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Registration } from 'src/app/interfaces/registration';
 
 @Component({
@@ -8,6 +9,7 @@ import { Registration } from 'src/app/interfaces/registration';
   styleUrls: ['./registration-form.component.scss']
 })
 export class RegistrationFormComponent  {
+
 
   emailError: string | null = null;
   passwordError: string | null = null;
@@ -20,7 +22,7 @@ export class RegistrationFormComponent  {
 
   registrationForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private route: Router) {
     this.registrationForm = this.fb.group({
       email: new FormControl("", [Validators.required, Validators.email]),
       password: new FormControl("", [Validators.required]),
@@ -30,8 +32,6 @@ export class RegistrationFormComponent  {
       lastName: new FormControl("", [Validators.required]),
     }, { validators: this.passwordMatchValidator });
   }
-
-  
 
   emitRegistration() {
     this.emailError = null;
@@ -51,11 +51,11 @@ export class RegistrationFormComponent  {
       };
       this.registrationEmit.emit(registrationPayload);
     } else {
-      this.emailError = this.registrationForm.get('email')?.hasError('required') ? 'Campo obbligatorio' : this.registrationForm.get('email')?.hasError('email') ? 'Inserisci un indirizzo email valido' : null;
-      this.passwordError = this.registrationForm.get('password')?.hasError('required') ? 'Campo obbligatorio' : this.registrationForm.get('password')?.hasError('pattern') ? 'La password deve contenere almeno 8 caratteri, una maiuscola e un simbolo' : null;
-      this.confirmPasswordError = this.registrationForm.get('confirmPassword')?.hasError('required') ? 'Campo obbligatorio' : this.registrationForm.hasError('passwordsNotMatch') ? 'Le password devono coincidere' : null;
-      this.nomeTitolareError = this.registrationForm.get('firstName')?.hasError('required') ? 'Campo obbligatorio' : null;
-      this.cognomeTitolareError = this.registrationForm.get('lastName')?.hasError('required') ? 'Campo obbligatorio' : null;
+      this.emailError = this.registrationForm.get('email')?.hasError('required') ? '*' : this.registrationForm.get('email')?.hasError('email') ? 'Inserisci un indirizzo email valido' : null;
+      this.passwordError = this.registrationForm.get('password')?.hasError('required') ? '*' : this.registrationForm.get('password')?.hasError('pattern') ? 'La password deve contenere almeno 8 caratteri, una maiuscola e un simbolo' : null;
+      this.confirmPasswordError = this.registrationForm.get('confirmPassword')?.hasError('required') ? '*' : this.registrationForm.hasError('passwordsNotMatch') ? 'Le password devono coincidere' : null;
+      this.nomeTitolareError = this.registrationForm.get('firstName')?.hasError('required') ? '*' : null;
+      this.cognomeTitolareError = this.registrationForm.get('lastName')?.hasError('required') ? '*' : null;
     }
   }
 
@@ -63,6 +63,10 @@ export class RegistrationFormComponent  {
     const password = formGroup.get('password')?.value;
     const confirmPassword = formGroup.get('confirmPassword')?.value;
     return password === confirmPassword ? null : { passwordsNotMatch: true };
+  }
+
+  goToLogin(){
+    this.route.navigateByUrl("/login")
   }
 }
 

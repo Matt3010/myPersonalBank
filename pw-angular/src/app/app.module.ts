@@ -21,11 +21,12 @@ import { ImgAccountComponent } from './components/img-account/img-account.compon
   declarations: [
     AppComponent,
     LoginComponent,
-    RegistrationComponent, 
+    RegistrationComponent,
     LoginFormComponent,
     HomeComponent,
     NavbarComponent,
-    ImgAccountComponent,RegistrationFormComponent
+    ImgAccountComponent,
+    RegistrationFormComponent
 
   ],
   imports: [

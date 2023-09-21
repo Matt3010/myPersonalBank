@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +9,17 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
 
-  constructor(private route: Router) {
+  constructor(private route: Router, private authSrv: AuthService) {
 
   }
-
 
   goToLogin(){
       this.route.navigateByUrl("login")
   }
+  goToHome(){
+      this.route.navigateByUrl("home")
+  }
 
+  currentUser$ = this.authSrv.currentUser$
 
 }

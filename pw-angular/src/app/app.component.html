@@ -1,7 +1,14 @@
 <nav class="navbar navbar-light bg-light">
-  <span class="navbar-brand ms-4 me-auto">My personal Bank</span>
+  <span (click)="goToHome()" class="navbar-brand ms-4 me-auto" style="cursor: pointer;">My personal Bank</span>
   <div class="me-3">
+    <div *ngIf="!(currentUser$ | async) else loggedIn">
       <button class="btn bg-transparent" (click)="goToLogin()">Login</button>
+    </div>
+    <ng-template #loggedIn class="row align-content-center">
+      <img [src]="(currentUser$ | async)!.picture" alt="profile_img">
+        <p>{{(currentUser$ | async)!.fullName}}</p>
+    </ng-template>
+
   </div>
 </nav>
 

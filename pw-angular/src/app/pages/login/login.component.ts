@@ -19,7 +19,6 @@ export class LoginComponent {
   doLogin(loginPayload: Login){
     this.authSrv.login(loginPayload).subscribe(
       (res)=>{
-          //TODO - Service popup loggato
           this.toastr.success("You are correctly logged in!", "My personal Bank")
           this.route.navigateByUrl("/home")
         },

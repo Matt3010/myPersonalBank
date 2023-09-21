@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormControlName, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { interval, takeWhile } from 'rxjs';
 import { Login } from 'src/app/interfaces/login';
 
@@ -17,7 +18,7 @@ export class LoginFormComponent implements OnInit{
   @Output() loginEmit = new EventEmitter<Login>()
   @Input() loginErrors : any | null = null
 
-  constructor(private fb: FormBuilder){
+  constructor(private fb: FormBuilder, private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -25,14 +26,21 @@ export class LoginFormComponent implements OnInit{
   }
 
   startTimer() {
-  interval(10000).pipe(
-    takeWhile(() => true)
-  ).subscribe(() => {
-    this.loginForm.reset()
 
-    //TODO -
-    // Aggiungere popup service
-  });
+    setTimeout(()=>{
+      this.toastr.info("reset in 20s", "My personal Bank")
+    }, 10000)
+
+    setTimeout(()=>{
+      this.toastr.info("reset in 10s", "My personal Bank")
+    }, 20000)
+
+    interval(30000).pipe(
+      takeWhile(() => true)
+    ).subscribe(() => {
+      this.loginForm.reset()
+      this.toastr.warning("Page has been resetted for inactivity", "My personal Bank")
+    });
 }
 
   loginForm = this.fb.group({

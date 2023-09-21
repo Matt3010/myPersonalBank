@@ -1,5 +1,33 @@
-<div class="container d-flex justify-content-center mt-5">
-  <div class="col-12" style="max-width: 400px;">
-    <app-login-form (loginEmit)="doLogin($event)"></app-login-form>
-  </div>
+<div class="row m-0 p-1 position-absolute h-100 w-100 flex-wrap" style="background-color: hsl(68deg 76% 69%);">
+    <div class="col-md-6 pt-3 pb-3 bg-body-secondary d-flex justify-content-sm-center align-items-center flex-column">
+      <div class="row ms-4">
+        <div class="col-12 mb-4">
+          <img src="assets/images/logo.png" alt="logo" style="width: 40px; aspect-ratio: 1/1;">
+        </div>
+        <div class="col-12 mb-4">
+          <h2 class="fw-bolder fs-1 fw-bolder">Manage your <br> business finances <br> easily.</h2>
+        </div>
+        <div class="col-12 mb-4 fw-light">
+          Our cross-border payments platform empowers <br> businesses, online sellers and freelancers get <br> paid globally
+        </div>
+        <div class="col-5">
+          <app-login-form (loginEmit)="doLogin($event)"></app-login-form>
+        </div>
+      </div>
+    </div>
+  <div class="col-md-6 pt-3 pb-3 bg-body-tertiary d-inline-flex d-none d-sm-block" style="overflow: hidden; position: relative; height: 100%">
+        <div class="row" style="position: relative; left: -35px; transform: scale(0.65);">
+            <div class="col-4">
+                <img src="assets/images/card1.png" class="card card1" alt="card1">
+            </div>
+            <div class="col-4">
+                <img src="assets/images/card2.png" class="card card2" alt="card2">
+            </div>
+            <div class="col-4">
+                <img src="assets/images/card3.png" class="card card3" alt="card3">
+            </div>
+        </div>
+    </div>
 </div>
+
+

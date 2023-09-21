@@ -1,0 +1,30 @@
+.card {
+  height: 550px;
+  background-color: transparent;
+  object-fit: contain;
+}
+
+.card1 {
+  position: relative;
+  top: 100px;
+  left: 50px;
+  transform: rotate(15deg);
+
+}
+
+.card2 {
+  mix-blend-mode: difference;
+}
+
+.card3 {
+  position: relative;
+  top: 120px;
+  left: -30px;
+  transform: rotate(-15deg);
+}
+
+
+.card:hover {
+  transition: filter 0.2s linear;
+  filter: blur(4px);
+}

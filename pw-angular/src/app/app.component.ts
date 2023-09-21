@@ -9,9 +9,13 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent {
 
-  constructor(private AuthSrv: AuthService){
 
+  currentUser$ = this.AuthSrv.currentUser$
+
+  constructor(private AuthSrv: AuthService){
   }
+
+
 
   doLogOut(){
     this.AuthSrv.logout()

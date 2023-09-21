@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Login } from 'src/app/interfaces/login';
 import { AuthService } from 'src/app/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { FontService } from 'src/app/services/utils/font.service';
 
 
 @Component({
@@ -11,7 +12,11 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent {
 
-  constructor(private authSrv: AuthService, private route: Router, private toastr: ToastrService) {
+  constructor(
+    private authSrv: AuthService,
+    private route: Router,
+    private toastr: ToastrService,
+    private fontSrv: FontService) {
   }
 
   loginErrors: any | null = null
@@ -19,13 +24,12 @@ export class LoginComponent {
   doLogin(loginPayload: Login){
     this.authSrv.login(loginPayload).subscribe(
       (res)=>{
-          this.toastr.success("You are correctly logged in!", "My personal Bank")
-          this.route.navigateByUrl("/home")
+          this.route.navigateByUrl("home")
         },
       (err)=>{
-        console.log(err)
-          this.toastr.error("Sorry! An error has occurred", "My personal Bank")
-          this.loginErrors = err
+        if(err){
+            this.toastr.error(this.fontSrv.capitalize(err.error.message), "My personal Bank")
+        }
       }
     )
   }

@@ -16,7 +16,6 @@ export class LoginFormComponent implements OnInit{
   passwordError: string | null = null;
 
   @Output() loginEmit = new EventEmitter<Login>()
-  @Input() loginErrors : any | null = null
 
   constructor(private fb: FormBuilder, private toastr: ToastrService) {
   }
@@ -52,7 +51,6 @@ export class LoginFormComponent implements OnInit{
 
     this.emailError = null;
     this.passwordError = null;
-    this.loginErrors = null
 
     if (this.loginForm.valid) {
       let loginPayload: Login = {

@@ -9,11 +9,14 @@ import { RegistrationComponent } from './pages/registration/registration.compone
 import { LoginFormComponent } from './components/login-form/login-form.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { ImgAccountComponent } from './components/img-account/img-account.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,8 @@ import { ToastrModule } from 'ngx-toastr';
     RegistrationComponent,
     LoginFormComponent,
     HomeComponent,
+    NavbarComponent,
+    ImgAccountComponent,
 
   ],
   imports: [
@@ -34,7 +39,14 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot(),
 
   ],
-  providers: [],
+providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -9,17 +9,12 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent {
 
-  constructor(private route: Router, private authSrv: AuthService) {
+  constructor(private AuthSrv: AuthService){
 
   }
 
-  goToLogin(){
-      this.route.navigateByUrl("login")
+  doLogOut(){
+    this.AuthSrv.logout()
   }
-  goToHome(){
-      this.route.navigateByUrl("home")
-  }
-
-  currentUser$ = this.authSrv.currentUser$
 
 }

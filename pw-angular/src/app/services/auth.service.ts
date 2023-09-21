@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { BehaviorSubject, catchError, map, of, tap } from "rxjs"
+import { BehaviorSubject, Observable, catchError, map, of, tap } from "rxjs"
 import { JWTService } from "./jwt.service";
 import { Login } from "../interfaces/login";
 
@@ -31,7 +31,7 @@ export class AuthService {
     return this.jwtSrv.hasToken();
   }
 
-  login(input: Login) {
+  login(input: Login): Observable<any> {
     return this.http.post<{user: User, token: string}>('/api/login', input)
       .pipe(
         tap(res => this.jwtSrv.setToken(res.token)),

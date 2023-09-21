@@ -12,9 +12,7 @@ export class NavbarComponent {
 
   @Output() emitLogout = new EventEmitter<void>()
 
-  constructor(private route: Router, private authSrv: AuthService) {
-
-  }
+  constructor(private route: Router, private authSrv: AuthService)  {}
 
   goToLogin(){
       this.route.navigateByUrl("login")
@@ -24,6 +22,12 @@ export class NavbarComponent {
   }
   doLogOut(){
     this.emitLogout.emit()
+  }
+  goToRicercaMovimenti2(){
+    this.route.navigateByUrl("research/movements/2")
+  }
+  goToProfile(){
+    this.route.navigateByUrl("profile")
   }
 
   currentUser$ = this.authSrv.currentUser$

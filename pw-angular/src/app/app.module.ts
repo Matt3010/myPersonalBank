@@ -16,6 +16,12 @@ import { ToastrModule } from 'ngx-toastr';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { ImgAccountComponent } from './components/img-account/img-account.component';
+import { RicercaMovimenti2Component } from './pages/ricerca-movimenti2/ricerca-movimenti2.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { PaginatorRicercaMovimenti2Component } from './components/paginator-ricerca-movimenti2/paginator-ricerca-movimenti2.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MyIbanComponent } from './components/my-iban/my-iban.component';
+
 
 @NgModule({
   declarations: [
@@ -26,8 +32,11 @@ import { ImgAccountComponent } from './components/img-account/img-account.compon
     HomeComponent,
     NavbarComponent,
     ImgAccountComponent,
-    RegistrationFormComponent
-
+    RegistrationFormComponent,
+    RicercaMovimenti2Component,
+    ProfileComponent,
+    PaginatorRicercaMovimenti2Component,
+    MyIbanComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +46,7 @@ import { ImgAccountComponent } from './components/img-account/img-account.compon
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-
+    MatPaginatorModule
   ],
 providers: [
     {

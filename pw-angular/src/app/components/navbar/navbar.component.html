@@ -1,21 +1,30 @@
-<nav class="navbar navbar-light bg-light">
+<nav class="navbar nav-style" >
   <span (click)="goToHome()" class="navbar-brand ms-4 me-auto" style="cursor: pointer;">My personal Bank</span>
+
+    <div class="ms-auto me-auto mt-4 d-inline-flex justify-content-around" style="gap: 10px">
+
+      <p (click)="goToHome()" class="pointer">Home</p>
+      <p (click)="goToRicercaMovimenti2()" class="pointer">Ricerca 2</p>
+
+    </div>
+
   <div class="me-3">
     <div *ngIf="!(currentUser$ | async) else loggedIn">
       <button class="btn btn-outline-primary" (click)="goToLogin()">Login</button>
     </div>
     <ng-template #loggedIn>
       <div class="d-inline-flex align-items-center">
-        <app-img-account [firstName]="(currentUser$ | async)!.firstName" [lastName]="(currentUser$ | async)!.lastName">
+        <app-img-account [firstName]="(currentUser$ | async)!.user.firstName" [lastName]="(currentUser$ | async)!.user.lastName">
         </app-img-account>
 
         <div class="row">
           <div class="col">
             <div ngbDropdown class="d-inline-block">
               <button type="button" class="btn border-0" id="dropdownBasic1" ngbDropdownToggle>
-                {{(currentUser$ | async)!.fullName}}
+                {{(currentUser$ | async)!.user.fullName}}
               </button>
               <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button ngbDropdownItem (click)="goToProfile()">Profile</button>
                 <button ngbDropdownItem (click)="doLogOut()">Log out</button>
               </div>
             </div>
@@ -25,5 +34,6 @@
     </ng-template>
   </div>
 </nav>
+
 
 

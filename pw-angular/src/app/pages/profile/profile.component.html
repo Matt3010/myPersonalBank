@@ -1,0 +1,34 @@
+<div class="row mt-3 ms-5" style="min-width: 630px">
+  <div class="col-12">
+
+    <div class="row">
+      <div class="col-12">
+        <h5 style="font-size: 34px">Profile</h5>
+      </div>
+    </div>
+
+    <div class="row mt-3" *ngIf="currentUser$ | async">
+      <div class="col-4">
+        Firstname: <span class="fw-bold">{{(currentUser$ | async)!.user.firstName}}</span>
+      </div>
+      <div class="col-6">
+        Lastname: <span class="fw-bold">{{(currentUser$ | async)!.user.lastName}}</span>
+      </div>
+    </div>
+    <div class="row mt-3" *ngIf="currentUser$ | async">
+      <div class="col-7">
+        Email: <span class="fw-bold">{{(currentUser$ | async)!.email}}</span>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-12 mt-5">
+        <h5>My IBAN Accounts</h5>
+        <app-my-iban [bankAccounts]="(currentUser$ | async)!.bankAccounts"></app-my-iban>
+      </div>
+    </div>
+
+
+  </div>
+</div>

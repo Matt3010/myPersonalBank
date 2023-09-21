@@ -5,14 +5,19 @@ import { BehaviorSubject, Observable, catchError, map, of, tap } from "rxjs"
 import { JWTService } from "./jwt.service";
 import { Login } from "../interfaces/login";
 import { Registration } from '../interfaces/registration';
+import BankAccount from "../interfaces/bankAccounts";
+import BankAccounts from "../interfaces/bankAccounts";
 
 
 export interface User {
+  user:{
   id: string;
   firstName: string;
   lastName: string;
   fullName: string;
-  picture: string;
+  }
+  email: string;
+  bankAccounts: BankAccounts[];
 }
 
 @Injectable({providedIn: 'root'})
@@ -29,7 +34,7 @@ export class AuthService {
     }
   }
 
-  register(registrationData: Registration): Observable<Registration> {
+  register(registrationData: Registration): Observable<any> {
     return this.http.post<any>('/api/register', registrationData)
     .pipe(
       catchError(error => {
@@ -62,7 +67,7 @@ export class AuthService {
   }
 
   private fetchUser() {
-    this.http.get<User>('/api/users/me')
+    this.http.get<User>('/api/users/profile')
       .pipe(
         catchError(_ => {
           this.jwtSrv.removeToken();

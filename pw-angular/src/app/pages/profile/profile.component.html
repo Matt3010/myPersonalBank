@@ -23,9 +23,11 @@
 
     <div class="row">
 
-      <div class="col-12 mt-5">
+      <div class="col-12 mt-5 ">
         <h5>My IBAN Accounts</h5>
+        <div class="me-5">
         <app-my-iban [bankAccounts]="(currentUser$ | async)!.bankAccounts"></app-my-iban>
+        </div>
       </div>
     </div>
 

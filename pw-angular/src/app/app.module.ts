@@ -21,6 +21,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { PaginatorRicercaMovimenti2Component } from './components/paginator-ricerca-movimenti2/paginator-ricerca-movimenti2.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MyIbanComponent } from './components/my-iban/my-iban.component';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { MyIbanComponent } from './components/my-iban/my-iban.component';
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    MatPaginatorModule
+    MatPaginatorModule,
+    Ng2SmartTableModule
   ],
 providers: [
     {

@@ -10,13 +10,9 @@ export class ProfileComponent {
     currentUser: User | null = null
 
     constructor(private authService: AuthService){
-      this.authService
-
-
       this.authService.currentUser$.subscribe(res=>{
         console.log(res)
       })
-
     }
 
     currentUser$ = this.authService.currentUser$

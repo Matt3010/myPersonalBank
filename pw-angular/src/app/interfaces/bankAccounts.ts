@@ -1,5 +1,5 @@
 export default interface BankAccounts {
-	id?: string;
+	id: string;
 	user: string
 	createdAt: Date;
 	iban: string;

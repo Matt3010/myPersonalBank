@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import BankAccounts from 'src/app/interfaces/bankAccounts';
+import { compareAsc, format } from 'date-fns'
+import { User } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-my-iban',
@@ -21,25 +23,29 @@ export class MyIbanComponent {
     columns: {
        actions: {
         title: "Actions",
-        type: 'custom',
         filter: false,
         width: '120px',
        // renderComponent: ButtonTableDevicesDocsComponent,
       },
       createdAt: {
         title: "Created at",
-        type: '',
-        filter: true,
+        filter: false,
      //   renderComponent: TableViewComponent,
-
+        valuePrepareFunction: (item: any) => {
+          let formattedDate = format(new Date(item), 'yyyy-MM-dd hh:mm:ss')
+          return formattedDate
+        },
       },
       iban: {
       title:"Iban",
-      type: '',
-      filter: true,
+      filter: false,
       //renderComponent: TableViewComponent,
       },
     },
   };
 
 }
+function moment() {
+  throw new Error('Function not implemented.');
+}
+

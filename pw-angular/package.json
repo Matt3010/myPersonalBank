@@ -23,6 +23,8 @@
     "@ng-bootstrap/ng-bootstrap": "^14.2.0",
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.3",
+    "date-fns": "^2.30.0",
+    "moment": "^2.29.4",
     "ng2-smart-table": "^1.7.2",
     "ngx-toastr": "^15.2.2",
     "randomcolor": "^0.6.2",

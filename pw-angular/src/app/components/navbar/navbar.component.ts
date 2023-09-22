@@ -1,13 +1,19 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { pages } from 'pages';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit{
+  list: any;
+
+  ngOnInit(): void {
+    this.list = pages
+  }
 
 
   @Output() emitLogout = new EventEmitter<void>()
@@ -22,9 +28,6 @@ export class NavbarComponent {
   }
   doLogOut(){
     this.emitLogout.emit()
-  }
-  goToRicercaMovimenti2(){
-    this.route.navigateByUrl("research/movements/2")
   }
   goToProfile(){
     this.route.navigateByUrl("profile")

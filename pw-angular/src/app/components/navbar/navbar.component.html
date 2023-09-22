@@ -1,11 +1,8 @@
 <nav class="navbar nav-style" >
   <span (click)="goToHome()" class="navbar-brand ms-4 me-auto" style="cursor: pointer;">My personal Bank</span>
 
-    <div class="ms-auto me-auto mt-4 d-inline-flex justify-content-around" style="gap: 10px">
-
-      <p (click)="goToHome()" class="pointer">Home</p>
-      <p (click)="goToRicercaMovimenti2()" class="pointer">Ricerca 2</p>
-
+    <div class=" me-5 pe-5 mt-4 d-inline-flex justify-content-between"  style="gap: 10px">
+      <p *ngFor="let item of list"  [routerLink]="item.url" class="pointer">{{item.title}}</p>
     </div>
 
   <div class="me-3">

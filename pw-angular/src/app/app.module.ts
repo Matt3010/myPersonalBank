@@ -22,7 +22,9 @@ import { PaginatorRicercaMovimenti2Component } from './components/paginator-rice
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MyIbanComponent } from './components/my-iban/my-iban.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
-
+import { PaginatorRicercaMovimenti1Component } from './components/paginator-ricerca-movimenti1/paginator-ricerca-movimenti1.component';
+import { RicercaMovimenti1Component } from './pages/ricerca-movimenti1/ricerca-movimenti1.component';
+import { DoTransactionFormComponent } from './components/do-transaction-form/do-transaction-form.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,9 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     ProfileComponent,
     PaginatorRicercaMovimenti2Component,
     MyIbanComponent,
+    PaginatorRicercaMovimenti1Component,
+    RicercaMovimenti1Component,
+    DoTransactionFormComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +53,8 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     MatPaginatorModule,
-    Ng2SmartTableModule
+    Ng2SmartTableModule,
+
   ],
 providers: [
     {

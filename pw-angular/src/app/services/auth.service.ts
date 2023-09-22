@@ -10,25 +10,25 @@ import BankAccounts from "../interfaces/bankAccounts";
 
 
 export interface User {
-  user:{
-  id: string;
-  firstName: string;
-  lastName: string;
-  fullName: string;
+  user: {
+    id: string;
+    firstName: string;
+    lastName: string;
+    fullName: string;
   }
   email: string;
-  bankAccounts: BankAccounts[];
+  bankAccounts: BankAccount[]
 }
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
-  private _currentUser$ = new BehaviorSubject<User | null>(null);
 
+  private _currentUser$ = new BehaviorSubject<User | null>(null);
   currentUser$ = this._currentUser$.asObservable();
 
   constructor(private jwtSrv: JWTService,
-              private http: HttpClient,
-              private router: Router) {
+    private http: HttpClient,
+    private router: Router) {
     if (this.jwtSrv.hasToken()) {
       this.fetchUser();
     }
@@ -36,11 +36,11 @@ export class AuthService {
 
   register(registrationData: Registration): Observable<any> {
     return this.http.post<any>('/api/register', registrationData)
-    .pipe(
-      catchError(error => {
-        throw error;
-      })
-    );
+      .pipe(
+        catchError(error => {
+          throw error;
+        })
+      );
   }
 
 
@@ -49,14 +49,14 @@ export class AuthService {
   }
 
   login(input: Login): Observable<any> {
-    return this.http.post<{user: User, token: string}>('/api/login', input)
+    return this.http.post<{ user: User, token: string }>('/api/login', input)
       .pipe(
         tap(res => this.jwtSrv.setToken(res.token)),
-        tap(res => this.fetchUser()),
+        tap(() => this.fetchUser()),
         map(
-          (res: any) => {res.user},
+          (res: any) => { res.user },
           (err: any) => { err }
-          )
+        )
       );
   }
 
@@ -74,6 +74,10 @@ export class AuthService {
           return of(null);
         })
       )
-      .subscribe(user => this._currentUser$.next(user));
+      .subscribe((user: any) => {
+        this._currentUser$.next(user);
+      })
   }
 }
+
+

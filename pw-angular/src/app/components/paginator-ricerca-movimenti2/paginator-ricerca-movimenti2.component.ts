@@ -8,6 +8,5 @@ import { Transaction } from 'src/app/interfaces/transaction';
 })
 export class PaginatorRicercaMovimenti2Component {
 
-  @Input() source: Transaction | null = null
 
 }

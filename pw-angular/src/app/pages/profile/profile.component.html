@@ -1,5 +1,5 @@
 <div class="row mt-3 ms-5" style="min-width: 630px">
-  <div class="col-12">
+  <div class="col-12" *ngIf="!!(currentUser$ | async) === true">
 
     <div class="row">
       <div class="col-12">

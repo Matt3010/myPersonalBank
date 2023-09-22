@@ -15,7 +15,6 @@ export class NavbarComponent implements OnInit{
     this.list = pages
   }
 
-
   @Output() emitLogout = new EventEmitter<void>()
 
   constructor(private route: Router, private authSrv: AuthService)  {}

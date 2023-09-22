@@ -1,15 +1,18 @@
-<nav class="navbar nav-style" >
-  <span (click)="goToHome()" class="navbar-brand ms-4 me-auto" style="cursor: pointer;">My personal Bank</span>
+<!--
 
-    <div class=" me-5 pe-5 mt-4 d-inline-flex justify-content-between"  style="gap: 10px">
-      <p *ngFor="let item of list"  [routerLink]="item.url" class="pointer">{{item.title}}</p>
+<div class="" style="position: relative; top: 0; left: 0; background-color: hsla(220, 100%, 53%, 0.442); width: 100%; height: 60px;">
+  <div class="row m-0 justify-content-around   position-absolute h-100 w-100">
+    <div class="col-3   d-flex align-items-center">
+      <h6 class="m-0">My personal Bank</h6>
     </div>
-
-  <div class="me-3">
-    <div *ngIf="!(currentUser$ | async) else loggedIn">
+    <div class="col-6 d-flex align-items-center mt-3 justify-content-center">
+      <p *ngFor="let item of list" [routerLink]="item.url" class="pointer ms-3 me-3">{{item.title}}</p>
+    </div>
+    <div class="col-3 d-flex align-items-center justify-content-end">
+      <h6 class="m-0"><div *ngIf="!(currentUser$ | async) else loggedIn">
       <button class="btn btn-outline-primary" (click)="goToLogin()">Login</button>
-    </div>
-    <ng-template #loggedIn>
+      </div>
+      <ng-template #loggedIn>
       <div class="d-inline-flex align-items-center">
         <app-img-account [firstName]="(currentUser$ | async)!.user.firstName" [lastName]="(currentUser$ | async)!.user.lastName">
         </app-img-account>
@@ -27,10 +30,25 @@
             </div>
           </div>
         </div>
-      </div>
-    </ng-template>
+ </div>
+-->
+
+
+<mat-toolbar>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>My personal Bank</span>
+  <span class="example-spacer"></span>
+  <div *ngFor="let item of list">
+    <button class="ms-3" mat-button [routerLink]="item.url">
+      {{item.title}}
+    </button>
   </div>
-</nav>
 
 
 
+
+
+
+</mat-toolbar>

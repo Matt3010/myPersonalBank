@@ -9,6 +9,6 @@ import BankAccounts from 'src/app/interfaces/bankAccounts';
 export class MyIbanComponent {
 
 
-  @Input() bankAccounts : BankAccounts[] | null = null
+  @Input() bankAccounts : BankAccounts[] | undefined = undefined
 
 }

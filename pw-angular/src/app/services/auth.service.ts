@@ -52,7 +52,7 @@ export class AuthService {
     return this.http.post<{user: User, token: string}>('/api/login', input)
       .pipe(
         tap(res => this.jwtSrv.setToken(res.token)),
-        tap(res => this._currentUser$.next(res.user)),
+        tap(res => this.fetchUser()),
         map(
           (res: any) => {res.user},
           (err: any) => { err }

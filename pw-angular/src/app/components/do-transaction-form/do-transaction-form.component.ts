@@ -11,12 +11,11 @@ import { TransactionType } from 'src/app/interfaces/transactionType';
 })
 export class DoTransactionFormComponent{
 
-@Input() types: TransactionType[] | null = null
+@Input() types!: TransactionType[]
 
 	constructor(private modalService: NgbModal, private fb: FormBuilder) {}
 
   destroyed$ = new Subject()
-  choosenType: string | null = null
 
   newTransactionForm = this.fb.group({
     "transactionType" : new FormControl("", [Validators.required]),

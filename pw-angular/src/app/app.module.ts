@@ -26,6 +26,7 @@ import { PaginatorRicercaMovimenti1Component } from './components/paginator-rice
 import { RicercaMovimenti1Component } from './pages/ricerca-movimenti1/ricerca-movimenti1.component';
 import { DoTransactionFormComponent } from './components/do-transaction-form/do-transaction-form.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +55,6 @@ import { DoTransactionFormComponent } from './components/do-transaction-form/do-
     ToastrModule.forRoot(),
     MatPaginatorModule,
     Ng2SmartTableModule,
-
   ],
 providers: [
     {

@@ -12,10 +12,10 @@ export class TransactionService {
     this.getTransactionTypes()
   }
 
-  private _typesList$ = new BehaviorSubject<TransactionType[] | null>(null);
+  private _typesList$ = new BehaviorSubject<TransactionType[]>([]);
   typesList$ = this._typesList$.asObservable()
 
-   private _transactionsList$ = new BehaviorSubject<Transaction[] | null>(null);
+   private _transactionsList$ = new BehaviorSubject<Transaction[]>([]);
   transactionsList$ = this._transactionsList$.asObservable()
 
   getTransactionTypes(){
@@ -25,8 +25,7 @@ export class TransactionService {
       }
     )
   }
-
-
+  
     getByNumber1(qta: number, bankAccountId: string){
       this.http.post<Transaction[]>("/api/transactions/"+bankAccountId+"/number/", { number : qta }).subscribe(
         res =>{

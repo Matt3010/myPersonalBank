@@ -1,4 +1,4 @@
-export default interface BankAccounts {
+export default interface BankAccount {
 	id: string;
 	user: string
 	createdAt: Date;

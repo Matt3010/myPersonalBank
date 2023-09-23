@@ -1,43 +1,12 @@
-<!--
-
-<div class="" style="position: relative; top: 0; left: 0; background-color: hsla(220, 100%, 53%, 0.442); width: 100%; height: 60px;">
-  <div class="row m-0 justify-content-around   position-absolute h-100 w-100">
-    <div class="col-3   d-flex align-items-center">
-      <h6 class="m-0">My personal Bank</h6>
-    </div>
-    <div class="col-6 d-flex align-items-center mt-3 justify-content-center">
-      <p *ngFor="let item of list" [routerLink]="item.url" class="pointer ms-3 me-3">{{item.title}}</p>
-    </div>
-    <div class="col-3 d-flex align-items-center justify-content-end">
-      <h6 class="m-0"><div *ngIf="!(currentUser$ | async) else loggedIn">
-      <button class="btn btn-outline-primary" (click)="goToLogin()">Login</button>
-      </div>
-      <ng-template #loggedIn>
-      <div class="d-inline-flex align-items-center">
-        <app-img-account [firstName]="(currentUser$ | async)!.user.firstName" [lastName]="(currentUser$ | async)!.user.lastName">
-        </app-img-account>
-
-        <div class="row">
-          <div class="col">
-            <div ngbDropdown class="d-inline-block">
-              <button type="button" class="btn border-0" id="dropdownBasic1" ngbDropdownToggle>
-                {{(currentUser$ | async)!.user.fullName}}
-              </button>
-              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <button ngbDropdownItem (click)="goToProfile()">Profile</button>
-                <button ngbDropdownItem (click)="doLogOut()">Log out</button>
-              </div>
-            </div>
-          </div>
-        </div>
- </div>
--->
-
-
 <mat-toolbar>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
-  </button>
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+  <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+ <button mat-menu-item  (click)="goToProfile()">Profile</button>
+  <button mat-menu-item (click)="doLogOut()">Log out</button>
+
+</mat-menu>
   <span>My personal Bank</span>
   <span class="example-spacer"></span>
   <div *ngFor="let item of list">
@@ -45,10 +14,5 @@
       {{item.title}}
     </button>
   </div>
-
-
-
-
-
 
 </mat-toolbar>

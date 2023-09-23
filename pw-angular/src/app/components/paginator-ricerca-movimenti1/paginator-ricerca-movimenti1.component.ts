@@ -26,7 +26,6 @@ export class PaginatorRicercaMovimenti1Component implements OnInit{
             this.list = sortBy(res, [function(o) { return o.createdAt; }])
             this.dataSource.data = res
             this.dataSource._updatePaginator
-            console.log(this.list)
         })
     }
 

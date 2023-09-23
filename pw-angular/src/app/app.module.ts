@@ -13,7 +13,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { FormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { ImgAccountComponent } from './components/img-account/img-account.component';
@@ -34,6 +33,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { LineChartComponent } from './components/line-chart/line-chart.component';
 
 
 @NgModule({
@@ -52,7 +54,8 @@ import {MatIconModule} from '@angular/material/icon';
     MyIbanComponent,
     PaginatorRicercaMovimenti1Component,
     RicercaMovimenti1Component,
-    DoTransactionFormComponent
+    DoTransactionFormComponent,
+    LineChartComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,6 @@ import {MatIconModule} from '@angular/material/icon';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
     ButtonModule,
     FormsModule,
     SelectModule,
@@ -78,7 +80,9 @@ import {MatIconModule} from '@angular/material/icon';
     MatSelectModule,
     MatButtonModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatMenuModule,
+    MatSnackBarModule
   ],
 providers: [
     {

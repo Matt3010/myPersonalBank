@@ -5,8 +5,6 @@ import { BehaviorSubject, Observable, catchError, map, of, tap } from "rxjs"
 import { JWTService } from "./jwt.service";
 import { Login } from "../interfaces/login";
 import { Registration } from '../interfaces/registration';
-import BankAccount from "../interfaces/bankAccounts";
-import BankAccounts from "../interfaces/bankAccounts";
 
 
 export interface User {
@@ -17,7 +15,7 @@ export interface User {
     fullName: string;
   }
   email: string;
-  bankAccounts: BankAccount[]
+  bankAccounts: any
 }
 
 @Injectable({ providedIn: 'root' })
@@ -78,6 +76,7 @@ export class AuthService {
         this._currentUser$.next(user);
       })
   }
+
 }
 
 

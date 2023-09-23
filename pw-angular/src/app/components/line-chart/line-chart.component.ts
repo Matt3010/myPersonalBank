@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Chart } from 'chart.js/auto'
 import { orderBy, reverse } from 'lodash';
 
@@ -11,14 +11,13 @@ export class LineChartComponent implements OnInit {
 
   @Input() labels: string[] = []
   @Input() data: string[] = []
-
+  @Output() updateEmit = new EventEmitter<boolean>()
   public chart!: Chart;
+
   ngOnInit(): void {
-
     window.setTimeout(() => {
-      this.createChart();
+       this.createChart();
     }, 100)
-
   }
 
   createChart() {
@@ -30,10 +29,10 @@ export class LineChartComponent implements OnInit {
         labels: orderBy(this.labels),
         datasets: [{
           label: 'Trend',
-        data: reverse([...this.data.map(value => parseFloat(value))]), // Convert string to number
+          data: reverse([...this.data.map(value => parseFloat(value))]), // Convert string to number
           fill: false,
           borderColor: 'rgb(75, 192, 192)',
-          tension: 0.1
+          tension: 0
         }]
       },
       options: {
@@ -49,12 +48,12 @@ export class LineChartComponent implements OnInit {
               display: false
             },
             ticks: {
-             stepSize: 1000,
-             color: (ctx) => {
-              // Access the tick's value, cast it back to string, and compare it
-              const tickValue = parseFloat((ctx.tick.value).toString()).toString();
-              return tickValue >= '0' ? 'green' : 'red';
-            }
+              stepSize: 1000,
+              color: (ctx) => {
+                // Access the tick's value, cast it back to string, and compare it
+                const tickValue = parseFloat((ctx.tick.value).toString()).toString();
+                return tickValue >= '0' ? 'green' : 'red';
+              }
             }
           }
         }
@@ -63,23 +62,5 @@ export class LineChartComponent implements OnInit {
 
     });
   }
-
-
-updateChartSize() {
-    if (this.chart) {
-      const canvas = this.chart.canvas;
-      const parent = canvas.parentElement;
-      if (parent) {
-        const parentWidth = parent.clientWidth;
-        const parentHeight = parent.clientHeight;
-        canvas.width = parentWidth;
-        canvas.height = parentHeight;
-        this.chart.resize();
-      }
-    }
-  }
-
 }
 
-
-//NOTE - myChart.update()

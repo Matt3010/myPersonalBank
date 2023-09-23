@@ -19,6 +19,7 @@ orderForm!: FormGroup;
 isParentOpen = false;
 @Output() emitTransaction = new EventEmitter<AddTransiction>()
 @Output() emitQuery = new EventEmitter<{number: number, bankId: string}>()
+selectedAccount: any
 
 	constructor( private fb: FormBuilder ) {}
 
@@ -28,7 +29,6 @@ isParentOpen = false;
         this.emitQuery.emit({number: parseInt(this.query.value.number!), bankId: this.query.value.bankAccount!})
       })
   }
-
   newTransactionForm = this.fb.group({
     "transactionType" : new FormControl("", [Validators.required]),
     "amount": new FormControl("", [Validators.required]),
@@ -37,21 +37,12 @@ isParentOpen = false;
   })
   query = this.fb.group({
     "number": new FormControl("10", [Validators.required]),
-
-    //NOTE - farlo a oggetto e non ad Array cosi posso mettere il default value cioè uno
-    // e posso scorrerlo nel select
     "bankAccount": new FormControl("", [Validators.required]),
   })
-
   openParentModal() {
     this.isParentOpen = true;
   }
   closeParentModal() {
-    this.isParentOpen = false;
-  }
-  cancel() {
-
-    this.newTransactionForm.reset
     this.isParentOpen = false;
   }
   doTransaction(){

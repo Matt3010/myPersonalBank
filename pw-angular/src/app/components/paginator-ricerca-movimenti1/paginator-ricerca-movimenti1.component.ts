@@ -29,14 +29,14 @@ export class PaginatorRicercaMovimenti1Component implements OnInit{
         })
     }
 
- displayedColumns: string[] = ['bankAccount','createdAt','balance','amount','transactionType', 'description'];
- dataSource = new MatTableDataSource<Transaction>(this.list);
+    displayedColumns: string[] = ['bankAccount','createdAt','balance','amount','transactionType', 'description'];
+    dataSource = new MatTableDataSource<Transaction>(this.list);
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+      @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
+      ngAfterViewInit() {
+        this.dataSource.paginator = this.paginator;
+      }
 }
 
 

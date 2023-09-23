@@ -4,16 +4,14 @@ import { Transaction } from '../interfaces/transaction';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { TransactionType } from '../interfaces/transactionType';
 import { AddTransiction } from '../interfaces/add-transaction';
-import { sortBy } from 'lodash';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import BankAccounts from '../interfaces/bankAccounts';
-import BankAccount from '../interfaces/bankAccounts';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class TransactionService {
-  constructor(private http: HttpClient, private _snackBar: MatSnackBar ) {
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar, ) {
     this.getTransactionTypes()
   }
 
@@ -31,12 +29,10 @@ export class TransactionService {
     )
   }
 
-    getByNumber1(qta: number, bankAccount: BankAccount){
-     this.http.post<Transaction[]>("/api/transactions/"+bankAccount.id+"/number/", { number : qta }).subscribe(
+    getByNumber1(qta: number,id: string){
+     this.http.post<Transaction[]>("/api/transactions/"+id+"/number/", { number : qta }).subscribe(
       res=>{
-
-                    this._transactionsList$.next(res)
-
+        this._transactionsList$.next(res)
       }
      )
     }
@@ -53,8 +49,7 @@ export class TransactionService {
                   return dateB - dateA;
               });
               this._transactionsList$.next(orderedList)
-                  this._snackBar.open("Transaction succeded!", "OK");
-
+              this._snackBar.open("Transaction succeded!", "OK");
             },
             err=>{
                   this._snackBar.open("Transaction error!", "OK");

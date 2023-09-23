@@ -77,7 +77,7 @@
 
     </section>
     <ibm-modal-footer>
-      <button ibmButton="secondary" (click)="cancel()">Cancel</button>
+      <button ibmButton="secondary" (click)="closeParentModal()">Cancel</button>
       <button ibmButton="primary" (click)="doTransaction()" modal-primary-focus>Add</button>
     </ibm-modal-footer>
   </ibm-modal>
@@ -99,7 +99,7 @@
             <input min="0" type="number" matInput formControlName="number">
           </mat-form-field>
         </div>
-        <div class="col-auto">
+        <div class="col-auto" *ngIf="currentUser">
           <mat-form-field>
             <mat-label>Iban</mat-label>
             <mat-select formControlName="bankAccount" multiple>

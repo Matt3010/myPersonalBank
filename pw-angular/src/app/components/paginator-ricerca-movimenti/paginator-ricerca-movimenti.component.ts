@@ -1,4 +1,4 @@
-import { Component,   OnInit,   ViewChild } from '@angular/core';
+import { Component,   Input,   OnInit,   ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { TransactionService } from 'src/app/services/transaction.service';
@@ -7,9 +7,9 @@ import { Transaction } from 'src/app/interfaces/transaction';
 import { sortBy } from 'lodash';
 
 @Component({
-  selector: 'app-paginator-ricerca-movimenti1',
-  templateUrl: './paginator-ricerca-movimenti1.component.html',
-  styleUrls: ['./paginator-ricerca-movimenti1.component.scss']
+  selector: 'app-paginator-ricerca-movimenti',
+  templateUrl: './paginator-ricerca-movimenti.component.html',
+  styleUrls: ['./paginator-ricerca-movimenti.component.scss']
 })
 
 
@@ -20,6 +20,7 @@ export class PaginatorRicercaMovimenti1Component implements OnInit{
 
     transactionList$ = this.transactionService.transactionsList$
     list!: Transaction[]
+    @Input() fromMov2 : boolean = true
 
     ngOnInit(): void {
         this.transactionList$.subscribe(res=>{
@@ -29,7 +30,7 @@ export class PaginatorRicercaMovimenti1Component implements OnInit{
         })
     }
 
-    displayedColumns: string[] = ['bankAccount','createdAt','balance','amount','transactionType', 'description'];
+    @Input() displayedColumns: string[] | null = null
     dataSource = new MatTableDataSource<Transaction>(this.list);
 
       @ViewChild(MatPaginator) paginator!: MatPaginator;

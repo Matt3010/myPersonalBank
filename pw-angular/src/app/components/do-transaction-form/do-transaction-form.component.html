@@ -102,8 +102,16 @@
         <div class="col-auto" *ngIf="currentUser">
           <mat-form-field>
             <mat-label>Iban</mat-label>
-            <mat-select formControlName="bankAccount" multiple>
+            <mat-select formControlName="bankAccount">
               <mat-option *ngFor="let item of currentUser.bankAccounts" [value]="item.id">{{item.iban}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-auto" *ngIf="types && fromMov2 === true">
+          <mat-form-field>
+            <mat-label>Type</mat-label>
+            <mat-select formControlName="type">
+              <mat-option *ngFor="let item of types" [value]="item.id">{{item.name}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>

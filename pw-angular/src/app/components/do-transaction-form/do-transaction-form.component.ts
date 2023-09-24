@@ -15,10 +15,11 @@ export class DoTransactionFormComponent  implements OnInit{
 
 @Input() types!: TransactionType[]
 @Input() currentUser!: User
+@Input() fromMov2 : boolean = false
 orderForm!: FormGroup;
 isParentOpen = false;
 @Output() emitTransaction = new EventEmitter<AddTransiction>()
-@Output() emitQuery = new EventEmitter<{number: number, bankId: string}>()
+@Output() emitQuery = new EventEmitter<{number: number, bankId: string, type: string}>()
 selectedAccount: any
 
 	constructor( private fb: FormBuilder ) {}
@@ -26,7 +27,7 @@ selectedAccount: any
 
   ngOnInit(): void {
       this.query.valueChanges.subscribe((res)=>{
-        this.emitQuery.emit({number: parseInt(this.query.value.number!), bankId: this.query.value.bankAccount!})
+        this.emitQuery.emit({number: parseInt(this.query.value.number!), bankId: this.query.value.bankAccount!, type: this.query.value.type!})
       })
   }
   newTransactionForm = this.fb.group({
@@ -35,10 +36,13 @@ selectedAccount: any
     "bankAccount": new FormControl("", [Validators.required]),
     "description": new FormControl("", [Validators.required]),
   })
+
   query = this.fb.group({
     "number": new FormControl("10", [Validators.required]),
     "bankAccount": new FormControl("", [Validators.required]),
+    "type": new FormControl("", [Validators.required]),
   })
+  
   openParentModal() {
     this.isParentOpen = true;
   }

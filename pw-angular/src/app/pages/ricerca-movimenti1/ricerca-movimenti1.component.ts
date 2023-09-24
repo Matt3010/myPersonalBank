@@ -2,11 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { TransactionService } from 'src/app/services/transaction.service';
 import { AuthService, } from '../../services/auth.service';
 import { AddTransiction } from 'src/app/interfaces/add-transaction';
-import { format } from 'date-fns'
-  ;
+import { format } from 'date-fns';
 import { Transaction } from 'src/app/interfaces/transaction';
-import { orderBy, sortBy } from 'lodash';
-import BankAccount from '../../interfaces/bankAccounts';
+
 
 @Component({
   templateUrl: './ricerca-movimenti1.component.html',
@@ -25,6 +23,7 @@ export class RicercaMovimenti1Component implements OnInit {
   }
 
   ngOnInit(): void {
+
     //NOTE -qui lascio l' iban numero uno per la prima volta
     this.currentUser$.subscribe(res => {
       if(res)
@@ -40,7 +39,7 @@ export class RicercaMovimenti1Component implements OnInit {
 
   doQuery(query: any) {
     //NOTE - Qui invece avra sempre account personalizzato
-      this.transactionService.getByNumber1(query.number, query.bankId[0])
+      this.transactionService.getByNumber1(query.number, query.bankId)
   }
 
   addTransaction(payload: AddTransiction) {

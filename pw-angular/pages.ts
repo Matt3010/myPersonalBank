@@ -1,11 +1,11 @@
 export let pages = [
 
   {
-    "title":"Movimenti 1",
+    "title":"Number",
     "url":"research/movements/1"
   },
   {
-    "title":"Movimenti 2",
+    "title":"Category",
     "url":"research/movements/2"
   },
   {

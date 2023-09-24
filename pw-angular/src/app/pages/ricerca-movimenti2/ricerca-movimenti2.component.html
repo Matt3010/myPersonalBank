@@ -1,1 +1,23 @@
-<app-paginator-ricerca-movimenti2></app-paginator-ricerca-movimenti2>
+
+
+<div class="d-flex align-items-end justify-content-end pe-5 me-4" style="position: relative;top: 30px;">
+  <p style="font-size: 35px;" class="fw-bolder">Movimenti 2</p>
+</div>
+
+<div style="min-width: 980px">
+
+  <div class="mt-3 ms-3">
+    <app-do-transaction-form
+    [types]="(types$ | async)!"
+    [currentUser]="(currentUser$ | async)!"
+    [fromMov2]="true"
+    (emitTransaction)="addTransaction($event)"
+    (emitQuery)="doQuery($event)"
+    ></app-do-transaction-form>
+  </div>
+
+  <div class="mt-3 ms-3 me-3">
+      <app-paginator-ricerca-movimenti [displayedColumns]="['bankAccount','createdAt','amount','transactionType', 'description']" [fromMov2]="false"></app-paginator-ricerca-movimenti>
+  </div>
+
+</div>

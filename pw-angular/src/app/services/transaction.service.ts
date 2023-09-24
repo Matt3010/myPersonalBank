@@ -37,6 +37,14 @@ export class TransactionService {
      )
     }
 
+    getByCategory(qta: number,id: string, type: string){
+     this.http.post<Transaction[]>("/api/transactions/"+id+"/category/", { number : qta, type: type }).subscribe(
+      res=>{
+        this._transactionsList$.next(res)
+      }
+     )
+    }
+
 
     add1(payload: AddTransiction) {
       this.http.post<Transaction>("/api/transactions/"+ payload.bankAccount, payload).subscribe(

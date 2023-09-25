@@ -20,4 +20,11 @@
       <app-paginator-ricerca-movimenti [displayedColumns]="['bankAccount','createdAt','amount','transactionType', 'description']" [fromMov2]="false"></app-paginator-ricerca-movimenti>
   </div>
 
+
+   <div (click)="exportExcel()" class="example-button-container">
+        <button mat-fab color="accent" class="butt" aria-label="Example icon button with a bookmark icon">
+          <mat-icon>play_for_work</mat-icon>
+        </button>
+      </div>
+
 </div>

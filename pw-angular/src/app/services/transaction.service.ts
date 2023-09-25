@@ -57,7 +57,7 @@ export class TransactionService {
                   return dateB - dateA;
               });
               this._transactionsList$.next(orderedList)
-              this._snackBar.open("Transaction succeded!", "OK");
+              this._snackBar.open("Transaction succeded! Reload to see changes in chart", "OK");
             },
             err=>{
                   this._snackBar.open("Transaction error!", "OK");

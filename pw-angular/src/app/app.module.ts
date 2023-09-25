@@ -10,21 +10,34 @@ import { RegistrationFormComponent } from './components/registration-form/regist
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
+import { FormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { ImgAccountComponent } from './components/img-account/img-account.component';
 import { RicercaMovimenti2Component } from './pages/ricerca-movimenti2/ricerca-movimenti2.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { PaginatorRicercaMovimenti2Component } from './components/paginator-ricerca-movimenti2/paginator-ricerca-movimenti2.component';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { MyIbanComponent } from './components/my-iban/my-iban.component';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { PaginatorRicercaMovimenti1Component } from './components/paginator-ricerca-movimenti1/paginator-ricerca-movimenti1.component';
+import { PaginatorRicercaMovimenti1Component } from './components/paginator-ricerca-movimenti/paginator-ricerca-movimenti.component';
 import { RicercaMovimenti1Component } from './pages/ricerca-movimenti1/ricerca-movimenti1.component';
 import { DoTransactionFormComponent } from './components/do-transaction-form/do-transaction-form.component';
+import { ButtonModule, HeaderModule, InputModule, ModalModule, NumberModule, SelectModule, SideNav, SliderModule, Table, TableModule, TooltipModule } from "carbon-components-angular";
+import {MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatSidenavModule} from '@angular/material/sidenav';
+
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { LineChartComponent } from './components/line-chart/line-chart.component';
+import {MatSliderModule} from '@angular/material/slider';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { QueryComponent } from './components/query/query.component';
 
 
 @NgModule({
@@ -39,11 +52,12 @@ import { DoTransactionFormComponent } from './components/do-transaction-form/do-
     RegistrationFormComponent,
     RicercaMovimenti2Component,
     ProfileComponent,
-    PaginatorRicercaMovimenti2Component,
     MyIbanComponent,
     PaginatorRicercaMovimenti1Component,
     RicercaMovimenti1Component,
-    DoTransactionFormComponent
+    DoTransactionFormComponent,
+    LineChartComponent,
+    QueryComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,9 +66,28 @@ import { DoTransactionFormComponent } from './components/do-transaction-form/do-
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ButtonModule,
+    FormsModule,
+    SelectModule,
+    ModalModule,
+    HeaderModule,
+    TooltipModule,
+    TableModule,
+    InputModule,
+    SliderModule,
+    MatTableModule,
     MatPaginatorModule,
-    Ng2SmartTableModule,
+    MatSidenavModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatMenuModule,
+    MatSnackBarModule,
+    MatSliderModule,
+    FontAwesomeModule
+
   ],
 providers: [
     {

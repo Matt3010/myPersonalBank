@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormControlName, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { interval, take, takeWhile } from 'rxjs';
+import { take } from 'rxjs';
 import { Login } from 'src/app/interfaces/login';
 
 @Component({
@@ -18,7 +18,7 @@ export class LoginFormComponent implements OnInit{
 
   @Output() loginEmit = new EventEmitter<Login>()
 
-  constructor(private fb: FormBuilder, private toastr: ToastrService, private route: Router) {
+  constructor(private _snackBar: MatSnackBar, private fb: FormBuilder, private route: Router) {
   }
 
 ngOnInit(): void {
@@ -35,16 +35,17 @@ ngOnInit(): void {
   startTimer() {
 
     setTimeout(()=>{
-      this.toastr.info("Reset in 20s", "My personal Bank")
+    this._snackBar.open("Reset in 20s" , "OK");
     }, 10000)
 
     setTimeout(()=>{
-      this.toastr.info("Reset in 10s", "My personal Bank")
+    this._snackBar.open("Reset in 10s", "OK");
     }, 20000)
 
     setTimeout(()=>{
       this.loginForm.reset()
-      this.toastr.info("Page resetted", "My personal Bank")    },
+    this._snackBar.open("Reset", "OK");
+    },
        30000)
 
     setTimeout(()=>{
@@ -76,7 +77,6 @@ ngOnInit(): void {
   }
 
   goToRegistration(){
-    this.toastr.clear()
     this.route.navigateByUrl("registration")
   }
 }

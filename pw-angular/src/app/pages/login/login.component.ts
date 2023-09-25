@@ -1,21 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Login } from 'src/app/interfaces/login';
 import { AuthService } from 'src/app/services/auth.service';
-import { ToastrService } from 'ngx-toastr';
 import { FontService } from 'src/app/services/utils/font.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
 
   constructor(
     private authSrv: AuthService,
     private route: Router,
-    private toastr: ToastrService,
+    private _snackBar: MatSnackBar,
     private fontSrv: FontService) {
   }
 
@@ -28,9 +28,13 @@ export class LoginComponent {
         },
       (err)=>{
         if(err){
-            this.toastr.error(this.fontSrv.capitalize(err.error.message), "My personal Bank")
-        }
+          this._snackBar.open(this.fontSrv.capitalize(err.error.message), "OK")
+          }
       }
     )
+  }
+
+  ngOnDestroy(): void {
+      this._snackBar.ngOnDestroy
   }
 }

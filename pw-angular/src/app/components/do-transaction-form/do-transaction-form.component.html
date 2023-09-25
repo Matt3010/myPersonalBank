@@ -1,37 +1,92 @@
-<ng-template #content let-modal>
 
-  <form [formGroup]="newTransactionForm">
+<form [formGroup]="newTransactionForm" *ngIf="currentUser">
+  <ibm-modal id="parent-modal" [open]="isParentOpen">
+    <ibm-modal-header (closeSelect)="closeParentModal()">
+      <h3 ibmModalHeaderHeading>New transaction</h3>
+    </ibm-modal-header>
+    <section ibmModalContent>
 
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">New transaction</h4>
-      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-    </div>
-    <div class="modal-body">
-      <form>
-        <div class="mb-3">
+      <!--TYPES-->
+      <div class="row mb-3">
+        <div class="col-12 mb-2">
+          <label for="">What type of transaction do you want to do?</label>
+        </div>
+        <div class="col-12">
+          <cds-select formControlName="transactionType">
+            <option *ngFor="let item of types" [value]="item.id">{{item.name}}</option>
+          </cds-select>
+        </div>
+      </div>
 
-          <div class="row">
+      <!--BANK ACCOUNTS-->
+      <div class="row">
+        <div class="col-12 mb-2">
+          <label for="">What type of transaction you want to do?</label>
+        </div>
+        <div class="col-12">
+          <cds-select formControlName="bankAccount">
+            <option *ngFor="let item of currentUser.bankAccounts" [value]="item.id">{{item.iban}}</option>
+          </cds-select>
+        </div>
+      </div>
 
-            <div class="col-12 mb-2">
-              <label for="">What type of transaction you want to do?</label>
-            </div>
-            <div class="col-12">
+      <!-- AMOUNT -->
 
+      <div class="row">
 
+        <div class="col-12 mt-3">
+          <label for="">Value for the transaction:</label>
+        </div>
+        <div class="col-12">
+          <div ibmGrid class="demo-list">
+            <div ibmRow class="one-demo">
+              <div ibmCol>
+                <ibm-label>
+                  <input ibmText id="originator-email-input" type="number" placeholder="Please input a value"
+                    formControlName="amount">
+                </ibm-label>
+              </div>
             </div>
           </div>
-
-
-
         </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
-    </div>
-  </form>
+      </div>
 
-</ng-template>
 
-<button class="btn btn-lg btn-outline-primary position-absolute" style="bottom: 20px; right: 20px; border-radius: 500px"
-  (click)="open(content)">+</button>
+      <!-- DESCRIPTION -->
+
+      <div class="row mt-3">
+
+        <div class="col-12  mb-2">
+          Decription:
+        </div>
+
+        <div class="col-12">
+          <div ibmGrid class="demo-list">
+            <div ibmRow class="one-demo">
+              <div ibmCol>
+                <textarea ibmTextArea formControlName="description" style="width: 100%;"
+                  placeholder="Please leave your Comments" aria-label="textarea"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+    </section>
+    <ibm-modal-footer>
+      <button ibmButton="secondary" (click)="closeParentModal()">Cancel</button>
+      <button ibmButton="primary" (click)="doTransaction()" modal-primary-focus>Add</button>
+    </ibm-modal-footer>
+  </ibm-modal>
+
+</form>
+
+<app-query
+(openParentEmit)="openParentModal()"
+[query]="query"
+[currentUser]="currentUser"
+[types]="types"
+[fromMov2]="fromMov2"></app-query>

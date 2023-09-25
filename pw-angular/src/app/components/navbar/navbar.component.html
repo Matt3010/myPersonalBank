@@ -1,36 +1,19 @@
-<nav class="navbar nav-style" >
-  <span (click)="goToHome()" class="navbar-brand ms-4 me-auto" style="cursor: pointer;">My personal Bank</span>
+<mat-toolbar>
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+  <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+ <button mat-menu-item  (click)="goToProfile()">Profile</button>
+  <button mat-menu-item (click)="doLogOut()">Log out</button>
 
-    <div class=" me-5 pe-5 mt-4 d-inline-flex justify-content-between"  style="gap: 10px">
-      <p *ngFor="let item of list"  [routerLink]="item.url" class="pointer">{{item.title}}</p>
-    </div>
 
-  <div class="me-3">
-    <div *ngIf="!(currentUser$ | async) else loggedIn">
-      <button class="btn btn-outline-primary" (click)="goToLogin()">Login</button>
-    </div>
-    <ng-template #loggedIn>
-      <div class="d-inline-flex align-items-center">
-        <app-img-account [firstName]="(currentUser$ | async)!.user.firstName" [lastName]="(currentUser$ | async)!.user.lastName">
-        </app-img-account>
-
-        <div class="row">
-          <div class="col">
-            <div ngbDropdown class="d-inline-block">
-              <button type="button" class="btn border-0" id="dropdownBasic1" ngbDropdownToggle>
-                {{(currentUser$ | async)!.user.fullName}}
-              </button>
-              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <button ngbDropdownItem (click)="goToProfile()">Profile</button>
-                <button ngbDropdownItem (click)="doLogOut()">Log out</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </ng-template>
+</mat-menu>
+  <span>My personal Bank</span>
+  <span class="example-spacer"></span>
+  <div *ngFor="let item of list">
+    <button class="ms-3" mat-button [routerLink]="item.url">
+      {{item.title}}
+    </button>
   </div>
-</nav>
 
-
-
+</mat-toolbar>

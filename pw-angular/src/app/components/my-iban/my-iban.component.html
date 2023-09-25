@@ -1,2 +1,28 @@
 
-    <ng2-smart-table [settings]="settings" [source]="bankAccounts"></ng2-smart-table>
+<table class="mt-4">
+  <thead>
+    <tr>
+      <th>Actions</th>
+      <th>Iban</th>
+      <th>Created at</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="bankAccounts">
+    <tr *ngFor="let item of bankAccounts">
+      <td>
+        ACTIONS
+      </td>
+      <td>
+        {{item.iban}}
+      </td>
+      <td>
+        {{item.createdAt | date}}
+      </td>
+    </tr>
+    <tr bgcolor="#1060fe" style="border:solid hsl(195deg 8% 92%) 1px; height: 30px;" >
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>

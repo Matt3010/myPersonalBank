@@ -35,6 +35,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { LineChartComponent } from './components/line-chart/line-chart.component';
+import {MatSliderModule} from '@angular/material/slider';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { QueryComponent } from './components/query/query.component';
 
 
 @NgModule({
@@ -53,7 +56,8 @@ import { LineChartComponent } from './components/line-chart/line-chart.component
     PaginatorRicercaMovimenti1Component,
     RicercaMovimenti1Component,
     DoTransactionFormComponent,
-    LineChartComponent
+    LineChartComponent,
+    QueryComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,7 +84,10 @@ import { LineChartComponent } from './components/line-chart/line-chart.component
     MatToolbarModule,
     MatIconModule,
     MatMenuModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSliderModule,
+    FontAwesomeModule
+
   ],
 providers: [
     {

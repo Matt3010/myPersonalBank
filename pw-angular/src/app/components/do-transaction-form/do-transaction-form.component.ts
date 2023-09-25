@@ -3,8 +3,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
 import { TransactionType } from 'src/app/interfaces/transactionType';
-import { User } from 'src/app/services/auth.service';
+import { AuthService, User } from 'src/app/services/auth.service';
 import { AddTransiction } from '../../interfaces/add-transaction';
+import { TransactionService } from 'src/app/services/transaction.service';
 
 @Component({
   selector: 'app-do-transaction-form',
@@ -22,13 +23,14 @@ isParentOpen = false;
 @Output() emitQuery = new EventEmitter<{number: number, bankId: string, type: string}>()
 selectedAccount: any
 
-	constructor( private fb: FormBuilder ) {}
+	constructor( private fb: FormBuilder) {}
 
 
   ngOnInit(): void {
       this.query.valueChanges.subscribe((res)=>{
         this.emitQuery.emit({number: parseInt(this.query.value.number!), bankId: this.query.value.bankAccount!, type: this.query.value.type!})
       })
+
   }
   newTransactionForm = this.fb.group({
     "transactionType" : new FormControl("", [Validators.required]),
@@ -39,10 +41,10 @@ selectedAccount: any
 
   query = this.fb.group({
     "number": new FormControl("10", [Validators.required]),
-    "bankAccount": new FormControl("", [Validators.required]),
+    "bankAccount": new FormControl("" , [Validators.required]),
     "type": new FormControl("", [Validators.required]),
   })
-  
+
   openParentModal() {
     this.isParentOpen = true;
   }

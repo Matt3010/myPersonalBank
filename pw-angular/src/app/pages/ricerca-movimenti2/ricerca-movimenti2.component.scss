@@ -1,0 +1,21 @@
+.example-button-container {
+  position: fixed;
+  bottom: 30px;
+  left: 20px
+}
+
+.butt:hover {
+  transition: height linear 0.2s;
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+  content: "Download";
+}
+
+.butt:hover::after {
+
+  content: "Download";
+  padding-right: 15px;
+  padding-left: 15px;
+  font-weight: bold;
+}

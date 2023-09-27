@@ -35,3 +35,10 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.mat-mdc-form-field-subscript-wrapper {
+  display: none;
+  box-sizing: border-box;
+  width: 100%;
+  position: relative;
+}

@@ -81,17 +81,17 @@
   <div class="ms-4">
     <small>Filter by:</small>
   </div>
-  <div class="col-6 ms-3">
+  <div class="col-12 ms-3">
     <form [formGroup]="query">
       <div class="row">
-        <div class="col-auto">
+        <div class="col-auto ms-2 p-0">
           <mat-form-field class="example-full-width">
             <mat-label>Quantity</mat-label>
             <input min="0" type="number" matInput formControlName="number">
           </mat-form-field>
         </div>
 
-        <div class="col-auto" *ngIf="types && fromMov2 === true">
+        <div class="col-auto ms-1 p-0" *ngIf="types && fromMov2 === true">
           <mat-form-field>
             <mat-label>Type</mat-label>
             <mat-select value="3" formControlName="type">
@@ -100,7 +100,7 @@
           </mat-form-field>
         </div>
 
-        <div class="col-auto" *ngIf="types && fromMov2 === true && fromMov3 === true">
+        <div class="col-auto ms-1 p-0" *ngIf="types && fromMov2 === true && fromMov3 === true">
 
           <app-date-range (emitStart)="setDateStart($event)" (emitEnd)="setDateEnd($event)"></app-date-range>
 

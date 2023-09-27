@@ -5,8 +5,12 @@ import { AddTransiction } from 'src/app/interfaces/add-transaction';
 import { format } from 'date-fns';
 import { Transaction } from 'src/app/interfaces/transaction';
 import * as XLSX from 'xlsx';
+import BankAccount from '../../interfaces/bankAccounts';
+import { ActivatedRoute, Router } from '@angular/router';
+import { orderBy, reverse } from 'lodash';
 
 @Component({
+  selector: 'app-number',
   templateUrl: './ricerca-movimenti1.component.html',
   styleUrls: ['./ricerca-movimenti1.component.scss']
 })
@@ -16,34 +20,31 @@ export class RicercaMovimenti1Component implements OnInit {
   data: Array<string> = [];
   types$ = this.transactionService.typesList$
   currentUser$ = this.authService.currentUser$
+  bankAccounts$ = this.transactionService.bankAccounts$
+  transactionList!: Transaction[]
 
   constructor(
     private transactionService: TransactionService,
-    private authService: AuthService) {
+    private authService: AuthService, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-
-    //NOTE -qui lascio l' iban numero uno per la prima volta
-    this.currentUser$.subscribe(res => {
-      if(res)
-      this.transactionService.getByNumber1(10, res!.bankAccounts[0].id)
-    })
-
-    this.transactionService.transactionsList$.subscribe(
-      list => {
-        this.initializeDataset(list)
+    this.route.queryParams
+      .subscribe(params => {
+        let id = params['id'];
+        this.transactionService.getTransactions(id).subscribe(
+          res => {
+            this.transactionList = res
+            console.log(res)
+            this.initializeDataset(this.transactionList)
+          }
+        )
       }
-    )
-  }
-
-  doQuery(query: any) {
-    //NOTE - Qui invece avra sempre account personalizzato
-      this.transactionService.getByNumber1(query.number, query.bankId)
+      );
   }
 
   addTransaction(payload: AddTransiction) {
-    this.transactionService.add1(payload)
+    this.transactionService.add(payload)
   }
 
   initializeDataset(inputLabels: Transaction[]) {
@@ -57,20 +58,22 @@ export class RicercaMovimenti1Component implements OnInit {
     });
     this.labels = labels
     this.data = data
+
   }
 
-  fileName= 'movementsOne.xlsx';
-  exportExcel(){
-   /* table id is passed over here */
-       let element = document.getElementById('excel-table');
-       const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+  fileName = 'movementsOne.xlsx';
+  exportExcel() {
+    /* table id is passed over here */
+    let element = document.getElementById('excel-table');
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
-       /* generate workbook and add the worksheet */
-       const wb: XLSX.WorkBook = XLSX.utils.book_new();
-       XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
-       /* save to file */
-       XLSX.writeFile(wb, this.fileName);
+    /* save to file */
+    XLSX.writeFile(wb, this.fileName);
   }
+
 
 }

@@ -1,23 +1,26 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { pages } from 'src/app/pages';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit{
+export class NavbarComponent implements OnInit {
   list: any;
+  currentRoute: string | null = null
+
+    constructor(private route: Router, private authSrv: AuthService)  {}
+
 
   ngOnInit(): void {
-    this.list = pages
+    //this.currentRoute = this.route.url
+    //this.list = pages.getPagesByRoute(this.currentRoute)
   }
 
   @Output() emitLogout = new EventEmitter<void>()
 
-  constructor(private route: Router, private authSrv: AuthService)  {}
 
   goToLogin(){
       this.route.navigateByUrl("login")

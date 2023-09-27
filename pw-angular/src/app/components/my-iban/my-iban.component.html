@@ -2,21 +2,26 @@
 <table class="mt-4">
   <thead>
     <tr>
-      <th>Actions</th>
       <th>Iban</th>
       <th>Created at</th>
+      <th class="col-2">Actions</th>
     </tr>
   </thead>
   <tbody *ngIf="bankAccounts">
-    <tr *ngFor="let item of bankAccounts">
+    <tr *ngFor="let accounts of bankAccounts">
+
       <td>
-        ACTIONS
+        {{accounts.iban}}
       </td>
       <td>
-        {{item.iban}}
+        {{accounts.createdAt | date}}
       </td>
-      <td>
-        {{item.createdAt | date}}
+      <td class="row">
+        <div class="col-12">
+            <button class="bg-body-secondary ms-0" (click)="goToDetail(accounts.id)" style="transform: scale(1.2);">
+              <fa-icon [icon]="faUpRightFromSquare" ></fa-icon>
+            </button>
+        </div>
       </td>
     </tr>
     <tr bgcolor="#1060fe" style="border:solid hsl(195deg 8% 92%) 1px; height: 30px;" >

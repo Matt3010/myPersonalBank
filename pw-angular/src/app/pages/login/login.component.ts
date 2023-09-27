@@ -24,7 +24,7 @@ export class LoginComponent implements OnDestroy {
   doLogin(loginPayload: Login){
     this.authSrv.login(loginPayload).subscribe(
       (res)=>{
-          this.route.navigateByUrl("home")
+          this.route.navigate(['profile'])
         },
       (err)=>{
         if(err){

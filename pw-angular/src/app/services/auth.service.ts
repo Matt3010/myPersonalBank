@@ -8,14 +8,14 @@ import { Registration } from '../interfaces/registration';
 
 
 export interface User {
-  user: {
+
+  user:{
     id: string;
     firstName: string;
     lastName: string;
     fullName: string;
   }
-  email: string;
-  bankAccounts: any
+    email: string
 }
 
 @Injectable({ providedIn: 'root' })
@@ -61,7 +61,7 @@ export class AuthService {
   logout() {
     this.jwtSrv.removeToken();
     this._currentUser$.next(null);
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
 
   private fetchUser() {

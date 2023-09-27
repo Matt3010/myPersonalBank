@@ -18,17 +18,7 @@
         </div>
       </div>
 
-      <!--BANK ACCOUNTS-->
-      <div class="row">
-        <div class="col-12 mb-2">
-          <label for="">What type of transaction you want to do?</label>
-        </div>
-        <div class="col-12">
-          <cds-select formControlName="bankAccount">
-            <option *ngFor="let item of currentUser.bankAccounts" [value]="item.id">{{item.iban}}</option>
-          </cds-select>
-        </div>
-      </div>
+
 
       <!-- AMOUNT -->
 
@@ -84,9 +74,30 @@
 
 </form>
 
-<app-query
-(openParentEmit)="openParentModal()"
-[query]="query"
-[currentUser]="currentUser"
-[types]="types"
-[fromMov2]="fromMov2"></app-query>
+
+<div class="row">
+  <div class="col-auto">
+        <button style="height: 55px;" mat-flat-button (click)="openParentModal()" color="primary">New transaction</button>
+  </div>
+  <div class="col-6">
+    <form [formGroup]="query">
+      <div class="row">
+        <div class="col-auto">
+          <mat-form-field class="example-full-width">
+            <mat-label>Quantity</mat-label>
+            <input min="0" type="number" matInput formControlName="number">
+          </mat-form-field>
+        </div>
+
+        <div class="col-auto" *ngIf="types && fromMov2 === true">
+          <mat-form-field>
+            <mat-label>Type</mat-label>
+            <mat-select value="3" formControlName="type">
+              <mat-option *ngFor="let item of types" [value]="item.id">{{item.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService, User } from '../../services/auth.service';
+import { Component } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+import { TransactionService } from 'src/app/services/transaction.service';
 
 @Component({
   templateUrl: './profile.component.html',
@@ -7,14 +8,11 @@ import { AuthService, User } from '../../services/auth.service';
 })
 export class ProfileComponent {
 
-    currentUser: User | null = null
-
-    constructor(private authService: AuthService){
-      this.authService.currentUser$.subscribe(res=>{
-        console.log(res)
-      })
+    constructor(private authService: AuthService, private transactionService: TransactionService){
     }
 
     currentUser$ = this.authService.currentUser$
+    bankAccounts$ = this.transactionService.bankAccounts$
+
 
   }

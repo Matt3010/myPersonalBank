@@ -17,16 +17,15 @@
     </div>
     <div class="row mt-3" *ngIf="currentUser$ | async">
       <div class="col-7">
-        Email: <span class="fw-bold">{{(currentUser$ | async)!.email}}</span>
+       Email: <span class="fw-bold">{{(currentUser$ | async)!.email}}</span>
       </div>
     </div>
 
     <div class="row">
-
       <div class="col-12 mt-5 ">
         <h5>My IBAN Accounts</h5>
         <div class="me-5">
-        <app-my-iban [bankAccounts]="(currentUser$ | async)!.bankAccounts"></app-my-iban>
+        <app-my-iban [bankAccounts]="(bankAccounts$ | async)!"></app-my-iban>
         </div>
       </div>
     </div>

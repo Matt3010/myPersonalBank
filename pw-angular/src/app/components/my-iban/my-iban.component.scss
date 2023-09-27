@@ -61,3 +61,11 @@ $table-border-color: #e9ebec;
     }
   }
 }
+
+button {
+  width: 30px;
+  aspect-ratio: 1/1;
+  border-radius: 3px;
+  border: solid rgb(203, 203, 203) 1px;
+  margin: 10px 3px;
+}

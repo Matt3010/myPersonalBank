@@ -15,8 +15,6 @@ export class AppComponent {
   constructor(private AuthSrv: AuthService){
   }
 
-
-
   doLogOut(){
     this.AuthSrv.logout()
   }

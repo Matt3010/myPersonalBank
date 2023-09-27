@@ -22,7 +22,9 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "typeRoots": ["node_modules/@types", "node_modules/@fortawesome/fontawesome-svg-core", "node_modules/@fortawesome/fontawesome-common-types"],
+
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

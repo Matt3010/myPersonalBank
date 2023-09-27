@@ -1,0 +1,25 @@
+  <div class="row">
+        <div class="col-12">
+                     <div class="mo-tabs">
+                      <div class="row align-items-center mr-5">
+                        <div class="col">
+                            <div class="mo-tabs-header">
+                              <ul class="mo-tabs-items">
+                                <li   class="mo-tabs-item" title="Scheda tecnica" [class.active]="tab === 'number'" (click)="setTab('number')">
+                                  {{"Number"}}
+                                </li>
+                                <li  class="mo-tabs-item" title="Scheda attrezzaggio" [class.active]="tab === 'type'" (click)="setTab('type')">
+                                  {{"Type"}}
+                                </li>
+
+
+                              </ul>
+                            </div>
+                          </div>
+
+                            <div class="mo-tabs-content">
+                              <app-number  *ngIf="tab === 'number'"></app-number>
+                              <app-number  *ngIf="tab === 'type'"></app-number>
+                            </div>
+                      </div>
+

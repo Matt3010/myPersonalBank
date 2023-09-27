@@ -16,7 +16,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { ImgAccountComponent } from './components/img-account/img-account.component';
-import { RicercaMovimenti2Component } from './pages/ricerca-movimenti2/ricerca-movimenti2.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { MyIbanComponent } from './components/my-iban/my-iban.component';
 import { PaginatorRicercaMovimenti1Component } from './components/paginator-ricerca-movimenti/paginator-ricerca-movimenti.component';
@@ -37,7 +36,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { LineChartComponent } from './components/line-chart/line-chart.component';
 import {MatSliderModule} from '@angular/material/slider';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { QueryComponent } from './components/query/query.component';
+import { GeneralRicercaComponent } from './pages/ricerca-general/general-ricerca.component';
+import { RicercaMovimenti2Component } from './pages/ricerca-movimenti2/ricerca-movimenti2.component';
 
 
 @NgModule({
@@ -50,6 +50,7 @@ import { QueryComponent } from './components/query/query.component';
     NavbarComponent,
     ImgAccountComponent,
     RegistrationFormComponent,
+    RicercaMovimenti1Component,
     RicercaMovimenti2Component,
     ProfileComponent,
     MyIbanComponent,
@@ -57,7 +58,8 @@ import { QueryComponent } from './components/query/query.component';
     RicercaMovimenti1Component,
     DoTransactionFormComponent,
     LineChartComponent,
-    QueryComponent,
+    GeneralRicercaComponent,
+
   ],
   imports: [
     BrowserModule,

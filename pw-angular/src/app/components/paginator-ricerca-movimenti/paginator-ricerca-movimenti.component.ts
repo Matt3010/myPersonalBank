@@ -1,4 +1,4 @@
-import { Component,   Input,   OnInit,   ViewChild } from '@angular/core';
+import { Component,   Input,   OnChanges,   OnInit,   SimpleChanges,   ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { TransactionService } from 'src/app/services/transaction.service';
@@ -13,31 +13,27 @@ import { sortBy } from 'lodash';
 })
 
 
-export class PaginatorRicercaMovimenti1Component implements OnInit{
+export class PaginatorRicercaMovimenti1Component implements  OnChanges{
 
-    constructor(private transactionService: TransactionService) {
-    }
+  @Input() transactionList: Transaction[] = [];
+  @Input() displayedColumns: string[] | null = null;
+  dataSource: MatTableDataSource<Transaction>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @Input() fromMov2 = true;
 
-    transactionList$ = this.transactionService.transactionsList$
-    list!: Transaction[]
-    @Input() fromMov2 : boolean = true
+  constructor() {
+    this.dataSource = new MatTableDataSource();
+  }
 
-    ngOnInit(): void {
-        this.transactionList$.subscribe(res=>{
-            this.list = sortBy(res, [function(o) { return o.createdAt; }])
-            this.dataSource.data = res
-            this.dataSource._updatePaginator
-        })
-    }
+  ngOnChanges(changes: SimpleChanges): void {
+          const sortedList = this.transactionList
+          this.dataSource.data = sortedList;
+          this.dataSource._updateChangeSubscription()
+  }
 
-    @Input() displayedColumns: string[] | null = null
-    dataSource = new MatTableDataSource<Transaction>(this.list);
-
-      @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-      ngAfterViewInit() {
-        this.dataSource.paginator = this.paginator;
-      }
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
 }
 
 

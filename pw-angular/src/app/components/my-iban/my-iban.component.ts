@@ -1,7 +1,9 @@
 import { Component, Input } from '@angular/core';
 import BankAccounts from 'src/app/interfaces/bankAccounts';
-import { compareAsc, format } from 'date-fns'
-import { User } from 'src/app/services/auth.service';
+import {  format } from 'date-fns'
+import { faArrowUp19 } from '@fortawesome/free-solid-svg-icons';
+import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-iban',
@@ -9,6 +11,9 @@ import { User } from 'src/app/services/auth.service';
   styleUrls: ['./my-iban.component.scss']
 })
 export class MyIbanComponent {
+
+  faArrowUp19 = faArrowUp19;
+  faUpRightFromSquare = faUpRightFromSquare;
 
 
   @Input() bankAccounts : BankAccounts[] | null = null
@@ -44,8 +49,19 @@ export class MyIbanComponent {
     },
   };
 
+  constructor(private route: Router){
+  }
+
+
+  goToDetail(id: string){
+    this.route.navigate(['bankAccounts/transactions'],{ queryParams: { id: id, page: "number" } })
+  }
+
 }
-function moment() {
-  throw new Error('Function not implemented.');
-}
+
+
+
+
+
+
 

@@ -1,0 +1,101 @@
+.mo-tabs {
+
+  .mo-tabs-items {
+    display: flex;
+    list-style-type: none;
+    margin-top: 25px;
+    margin-bottom: 0;
+
+    .mo-tabs-item {
+      cursor: pointer;
+      padding: 11px 20px 10px 20px;
+      font-size: 15px;
+      text-align: center;
+      letter-spacing: 0.57px;
+      background-color: #ffffff;
+      color: #000000;
+      border-top-left-radius: 6px;
+      height: 40px;
+      border-top-right-radius: 6px;
+      transition: background-color .15s, font-weight .05s;
+
+      &:hover {
+        background-color: rgba(237, 241, 245, 0.5);
+      }
+
+      &.active {
+        font-weight: bold;
+
+        background-color: #EDF1F5;
+      }
+
+
+    }
+  }
+}
+
+
+
+
+input,
+select,
+ng-select {
+  background-color: #FFFFFF;
+  border: 1px solid #96A7C4;
+  border-radius: 4px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1019607843);
+  padding-right: 8px;
+  padding-left: 8px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+  color: black;
+  width: 250px;
+}
+
+
+.global-dropzone {
+  position: fixed;
+  width: 50%;
+  height: 100%;
+  z-index: 99999;
+  bottom: 0;
+  left: 0;
+  background: #0000009B;
+
+  &:after {
+    content: attr(data-label);
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 30px;
+    color: #dcdcdc;
+    font-size: 25px;
+    border: 4px dashed #bbbbbb;
+    border-radius: 8px;
+    width: calc(100% - 60px);
+    height: calc(100% - 60px);
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.new-button {
+  height: 42px;
+  width: 186px;
+  background: linear-gradient(0deg, rgba(252, 153, 30, 1) 0%, rgba(252, 153, 30, 1) 100%);
+  font-weight: 600;
+}
+
+.modal-title {
+  font-weight: 600;
+}
+
+li {
+  max-width: 300px;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

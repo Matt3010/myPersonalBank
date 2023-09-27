@@ -4,12 +4,12 @@
   <table mat-table [dataSource]="dataSource" id="excel-table"> >
 
     <ng-container matColumnDef="bankAccount">
-      <th mat-header-cell *matHeaderCellDef> bankAccount </th>
+      <th mat-header-cell *matHeaderCellDef> Account ID </th>
       <td mat-cell *matCellDef="let element"> {{element.bankAccount}} </td>
     </ng-container>
 
     <ng-container matColumnDef="createdAt">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <th mat-header-cell *matHeaderCellDef> Created at </th>
       <td mat-cell *matCellDef="let element"> {{element.createdAt | date: 'medium'}} </td>
     </ng-container>
 
@@ -25,7 +25,7 @@
 
     <ng-container matColumnDef="transactionType">
       <th mat-header-cell *matHeaderCellDef> Type </th>
-      <td mat-cell *matCellDef="let element"> {{element.transactionType}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.transactionType.name}} </td>
     </ng-container>
 
     <ng-container matColumnDef="description">

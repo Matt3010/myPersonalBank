@@ -1,19 +1,32 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Transaction } from '../interfaces/transaction';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { TransactionType } from '../interfaces/transactionType';
-import { AddTransiction } from '../interfaces/add-transaction';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import BankAccount from '../interfaces/bankAccounts';
+import { ActivatedRoute } from '@angular/router';
+import { AddTransiction } from '../interfaces/add-transaction';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class TransactionService {
-  constructor(private http: HttpClient, private _snackBar: MatSnackBar, ) {
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar, private route: ActivatedRoute) {
+
+this.route.queryParams
+      .subscribe(params => {
+        console.log(params); // { orderby: "price" }
+        this.id = params['id'];
+      }
+    );
+
     this.getTransactionTypes()
+    this.getUserAccounts()
   }
+
+  id: string | null = null
 
   private _typesList$ = new BehaviorSubject<TransactionType[]>([]);
   typesList$ = this._typesList$.asObservable()
@@ -21,49 +34,38 @@ export class TransactionService {
    private _transactionsList$ = new BehaviorSubject<Transaction[]>([]);
   transactionsList$ = this._transactionsList$.asObservable()
 
-  getTransactionTypes(){
-    this.http.get<TransactionType[]>("api/transaction/types").subscribe(
-      types=>{
-        this._typesList$.next(types)
-      }
-    )
-  }
+   private _bankAccounts$ = new BehaviorSubject<BankAccount[]>([]);
+  bankAccounts$ = this._bankAccounts$.asObservable()
 
-    getByNumber1(qta: number,id: string){
-     this.http.post<Transaction[]>("/api/transactions/"+id+"/number/", { number : qta }).subscribe(
+    getTransactionTypes(){
+      this.http.get<TransactionType[]>("api/transactionTypes").subscribe(
+        types=>{
+          this._typesList$.next(types)
+        }
+      )
+    }
+
+   getTransactions(id: string, qta?: number, type?: string): Observable<Transaction[]> {
+  return this.http.get<Transaction[]>("/api/bankAccounts/" + id + "/transactions")
+}
+
+    getUserAccounts(){
+     this.http.get<BankAccount[]>("/api/bankAccounts/").subscribe(
       res=>{
-        this._transactionsList$.next(res)
+        this._bankAccounts$.next(res)
       }
      )
     }
 
-    getByCategory(qta: number,id: string, type: string){
-     this.http.post<Transaction[]>("/api/transactions/"+id+"/category/", { number : qta, type: type }).subscribe(
-      res=>{
-        this._transactionsList$.next(res)
-      }
-     )
-    }
-
-
-    add1(payload: AddTransiction) {
-      this.http.post<Transaction>("/api/transactions/"+ payload.bankAccount, payload).subscribe(
+    add(payload: AddTransiction) {
+      this.http.post<Transaction>("/api/bankAccounts/"+ this.id+"/transactions", payload).subscribe(
             res=>{
-              let lastValue = this._transactionsList$.value
-              lastValue.push(res)
-              let orderedList = lastValue.sort(function compare(a, b) {
-                  let dateA : any= new Date(a.createdAt);
-                  let dateB : any = new Date(b.createdAt);
-                  return dateB - dateA;
-              });
-              this._transactionsList$.next(orderedList)
-              this._snackBar.open("Transaction succeded! Reload to see changes in chart", "OK");
+              this.getTransactions(this.id!)
+              window.location.reload()
             },
-            err=>{
-                  this._snackBar.open("Transaction error!", "OK");
-
+            (err: Error)=>{
+              this._snackBar.open("Errore!", "OK");
             }
-
       )
     }
 

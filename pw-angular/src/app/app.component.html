@@ -1,5 +1,5 @@
-<app-navbar  (emitLogout)="doLogOut()" *ngIf="currentUser$ | async"></app-navbar>
+<app-navbar style="position: fixed; width: 100%; z-index: 1000000;" (emitLogout)="doLogOut()" *ngIf="currentUser$ | async"></app-navbar>
 
-<div>
+<div class="mt-5 pt-3">
   <router-outlet></router-outlet>
 </div>

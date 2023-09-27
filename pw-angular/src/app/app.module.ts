@@ -38,6 +38,10 @@ import {MatSliderModule} from '@angular/material/slider';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { GeneralRicercaComponent } from './pages/ricerca-general/general-ricerca.component';
 import { RicercaMovimenti2Component } from './pages/ricerca-movimenti2/ricerca-movimenti2.component';
+import { RicercaMovimenti3Component } from './pages/ricerca-movimenti3/ricerca-movimenti3.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { DateRangeComponent } from './components/do-transaction-form/date-range/date-range.component';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -59,6 +63,9 @@ import { RicercaMovimenti2Component } from './pages/ricerca-movimenti2/ricerca-m
     DoTransactionFormComponent,
     LineChartComponent,
     GeneralRicercaComponent,
+    RicercaMovimenti3Component,
+    DateRangeComponent,
+
 
   ],
   imports: [
@@ -88,7 +95,11 @@ import { RicercaMovimenti2Component } from './pages/ricerca-movimenti2/ricerca-m
     MatMenuModule,
     MatSnackBarModule,
     MatSliderModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+
+
 
   ],
 providers: [

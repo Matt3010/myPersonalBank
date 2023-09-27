@@ -8,6 +8,9 @@
     [bankAccounts]="(bankAccounts$ | async)!"
     (emitTransaction)="addTransaction($event)"
     (filtersChange)="doQuery($event)"
+    [fromMov2]="true"
+    [fromMov3]="true"
+
     ></app-do-transaction-form>
   </div>
 
@@ -28,5 +31,3 @@
 
 
 </div>
-
-

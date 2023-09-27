@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TransactionService } from 'src/app/services/transaction.service';
 import { AuthService, } from '../../services/auth.service';
 import { AddTransaction } from 'src/app/interfaces/add-transaction';
@@ -8,11 +8,11 @@ import * as XLSX from 'xlsx';
  import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-number',
-  templateUrl: './ricerca-movimenti1.component.html',
-  styleUrls: ['./ricerca-movimenti1.component.scss']
+  selector: 'app-ricerca-movimenti3',
+  templateUrl: './ricerca-movimenti3.component.html',
+  styleUrls: ['./ricerca-movimenti3.component.scss']
 })
-export class RicercaMovimenti1Component implements OnInit {
+export class RicercaMovimenti3Component {
 
   constructor(
     private transactionService: TransactionService,
@@ -29,7 +29,6 @@ export class RicercaMovimenti1Component implements OnInit {
 
 
   ngOnInit(): void {
-
     this.route.queryParams
       .subscribe(params => {
         let id = params['id'];
@@ -38,7 +37,6 @@ export class RicercaMovimenti1Component implements OnInit {
             this.transactionList = res
             console.log(res)
             this.initializeDataset(this.transactionList)
-
           }
         )
       }
@@ -63,7 +61,7 @@ export class RicercaMovimenti1Component implements OnInit {
 
   }
 
-  fileName = 'movementsOne.xlsx';
+  fileName = 'movementsThree.xlsx';
   exportExcel() {
     /* table id is passed over here */
     let element = document.getElementById('excel-table');
@@ -86,7 +84,7 @@ export class RicercaMovimenti1Component implements OnInit {
       this.route.queryParams
       .subscribe(params => {
         let id = params['id'];
-        this.transactionService.getTransactions(id, event.number).subscribe(
+        this.transactionService.getTransactions(id, event.number, event.type, event.startDate, event.endDate).subscribe(
           res => {
             this.transactionList = res
             console.log(res)
@@ -100,3 +98,4 @@ export class RicercaMovimenti1Component implements OnInit {
 
 
 }
+

@@ -13,7 +13,7 @@ export class GeneralRicercaComponent {
   constructor(private route: ActivatedRoute, private router: Router){
     const tab = this.route.snapshot.queryParamMap.get("tab") ;
     this.id = this.route.snapshot.queryParamMap.get("id") ;
-    this.tab = ["number", "types", "period" ].includes(tab!) ? tab : "number";
+    this.tab = ["number", "type", "period" ].includes(tab!) ? tab : "number";
   }
 
  setTab(tab: string) {

@@ -1,25 +1,33 @@
   <div class="row">
         <div class="col-12">
                      <div class="mo-tabs">
-                      <div class="row align-items-center mr-5">
+                      <div class="row ms-auto align-items-center mr-5" style="background: rgb(219,219,219);
+background: linear-gradient(180deg, rgba(219,219,219,1) 0%, rgba(255,255,255,1) 100%);">
                         <div class="col">
                             <div class="mo-tabs-header">
                               <ul class="mo-tabs-items">
-                                <li   class="mo-tabs-item" title="Scheda tecnica" [class.active]="tab === 'number'" (click)="setTab('number')">
+                                <li   class="mo-tabs-item" title="Filter by number" [class.active]="tab === 'number'" (click)="setTab('number')">
                                   {{"Number"}}
                                 </li>
-                                <li  class="mo-tabs-item" title="Scheda attrezzaggio" [class.active]="tab === 'type'" (click)="setTab('type')">
+                                <li  class="mo-tabs-item" title="Filter by type" [class.active]="tab === 'type'" (click)="setTab('type')">
                                   {{"Type"}}
+                                </li>
+                                <li  class="mo-tabs-item" title="Filter by period" [class.active]="tab === 'period'" (click)="setTab('period')">
+                                  {{"Dates"}}
                                 </li>
 
 
                               </ul>
                             </div>
                           </div>
+                      </div>
 
                             <div class="mo-tabs-content">
                               <app-number  *ngIf="tab === 'number'"></app-number>
-                              <app-number  *ngIf="tab === 'type'"></app-number>
+                              <app-view-type  *ngIf="tab === 'type'"></app-view-type>
+                              <app-ricerca-movimenti3  *ngIf="tab === 'period'"></app-ricerca-movimenti3>
                             </div>
                       </div>
 
+        </div>
+  </div>

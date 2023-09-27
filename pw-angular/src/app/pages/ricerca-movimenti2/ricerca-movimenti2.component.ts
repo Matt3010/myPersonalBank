@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { TransactionService } from 'src/app/services/transaction.service';
-import { AddTransiction } from 'src/app/interfaces/add-transaction';
+import { AddTransaction } from 'src/app/interfaces/add-transaction';
 import { format } from 'date-fns';
 import { Transaction } from 'src/app/interfaces/transaction';
 import * as XLSX from 'xlsx';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -14,6 +14,11 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RicercaMovimenti2Component {
 
+    constructor(
+    private transactionService: TransactionService,
+    private authService: AuthService, private route: ActivatedRoute, private router: Router) {
+  }
+
 
   labels: Array<string> = [];
   data: Array<string> = [];
@@ -22,19 +27,15 @@ export class RicercaMovimenti2Component {
   bankAccounts$ = this.transactionService.bankAccounts$
   transactionList!: Transaction[]
 
-  constructor(
-    private transactionService: TransactionService,
-    private authService: AuthService, private route: ActivatedRoute) {
-  }
 
   ngOnInit(): void {
-
     this.route.queryParams
       .subscribe(params => {
         let id = params['id'];
         this.transactionService.getTransactions(id).subscribe(
           res => {
             this.transactionList = res
+            console.log(res)
             this.initializeDataset(this.transactionList)
           }
         )
@@ -42,7 +43,7 @@ export class RicercaMovimenti2Component {
       );
   }
 
-  addTransaction(payload: AddTransiction) {
+  addTransaction(payload: AddTransaction) {
     this.transactionService.add(payload)
   }
 
@@ -73,5 +74,28 @@ export class RicercaMovimenti2Component {
     /* save to file */
     XLSX.writeFile(wb, this.fileName);
   }
+
+
+
+  doQuery(event: any){
+
+    console.log(event)
+
+      this.route.queryParams
+      .subscribe(params => {
+        let id = params['id'];
+        this.transactionService.getTransactions(id, event.number, event.type).subscribe(
+          res => {
+            this.transactionList = res
+            console.log(res)
+            this.initializeDataset(this.transactionList)
+          }
+        )
+      }
+      );
+
+  }
+
+
 
 }

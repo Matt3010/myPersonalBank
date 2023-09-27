@@ -1,9 +1,6 @@
 
-<div class="d-flex align-items-end justify-content-end pe-5 me-4" style="position: relative;top: 30px;">
-  <p style="font-size: 35px;" class="fw-bolder">Movimenti 2</p>
-</div>
 
-<div style="min-width: 980px">
+<div  style="min-width: 980px">
 
   <div class="mt-3 ms-3">
     <app-do-transaction-form
@@ -12,11 +9,12 @@
     [bankAccounts]="(bankAccounts$ | async)!"
     (emitTransaction)="addTransaction($event)"
     [fromMov2]="true"
+    (filtersChange)="doQuery($event)"
     ></app-do-transaction-form>
   </div>
 
-  <div class="mt-3 ms-3 me-3">
-      <app-paginator-ricerca-movimenti [transactionList]=" transactionList" [displayedColumns]="['bankAccount','createdAt','balance','amount','transactionType', 'description']"></app-paginator-ricerca-movimenti>
+  <div class=" ms-3 me-3">
+      <app-paginator-ricerca-movimenti [transactionList]=" transactionList" [displayedColumns]="['bankAccount','createdAt','amount','transactionType', 'description']"></app-paginator-ricerca-movimenti>
   </div>
 
      <div (click)="exportExcel()" class="example-button-container">

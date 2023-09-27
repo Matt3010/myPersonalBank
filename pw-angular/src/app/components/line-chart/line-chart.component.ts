@@ -25,14 +25,14 @@ export class LineChartComponent implements OnInit {
     const colors = ['red', 'green'];
     this.chart = new Chart("MyChart", {
       type: 'line',
-      data: {// values on X-Axis
+      data: {
         labels: orderBy(this.labels),
         datasets: [{
           label: 'Trend',
           data: reverse([...this.data.map(value => parseFloat(value))]), // Convert string to number
           fill: false,
           borderColor: 'rgb(75, 192, 192)',
-          tension: 0
+          tension: 0.4
         }]
       },
       options: {
@@ -48,7 +48,6 @@ export class LineChartComponent implements OnInit {
               display: false
             },
             ticks: {
-              stepSize: 1000,
               color: (ctx) => {
                 // Access the tick's value, cast it back to string, and compare it
                 const tickValue = parseFloat((ctx.tick.value).toString()).toString();

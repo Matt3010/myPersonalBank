@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Transaction } from '../interfaces/transaction';
 import { BehaviorSubject, Observable, map } from 'rxjs';
@@ -6,7 +6,7 @@ import { TransactionType } from '../interfaces/transactionType';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import BankAccount from '../interfaces/bankAccounts';
 import { ActivatedRoute } from '@angular/router';
-import { AddTransiction } from '../interfaces/add-transaction';
+import { AddTransaction } from '../interfaces/add-transaction';
 
 
 @Injectable({
@@ -45,9 +45,24 @@ this.route.queryParams
       )
     }
 
-   getTransactions(id: string, qta?: number, type?: string): Observable<Transaction[]> {
-  return this.http.get<Transaction[]>("/api/bankAccounts/" + id + "/transactions")
-}
+     getTransactions(id: string, qta?: number, type?: string, startDate?: string, endDate?: string): Observable<Transaction[]> {
+    let params = new HttpParams();
+
+    if (qta) {
+      params = params.set('number', qta.toString());
+    }
+    if (type) {
+      params = params.set('type', type);
+    }
+    if (startDate) {
+      params = params.set('startDate', startDate);
+    }
+    if (endDate == "1970-01-01") {
+      params = params.set('endDate', endDate!);
+    }
+    return this.http.get<Transaction[]>("/api/bankAccounts/" + id + "/transactions", { params });
+  }
+
 
     getUserAccounts(){
      this.http.get<BankAccount[]>("/api/bankAccounts/").subscribe(
@@ -57,7 +72,7 @@ this.route.queryParams
      )
     }
 
-    add(payload: AddTransiction) {
+    add(payload: AddTransaction) {
       this.http.post<Transaction>("/api/bankAccounts/"+ this.id+"/transactions", payload).subscribe(
             res=>{
               this.getTransactions(this.id!)

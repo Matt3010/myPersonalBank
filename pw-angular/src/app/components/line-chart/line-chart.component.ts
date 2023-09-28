@@ -30,7 +30,7 @@ export class LineChartComponent implements OnInit {
         datasets: [{
           label: 'Trend',
           data: reverse([...this.data.map(value => parseFloat(value))]), // Convert string to number
-          fill: false,
+          fill: true,
           borderColor: 'rgb(75, 192, 192)',
           tension: 0.4
         }]

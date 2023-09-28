@@ -6,6 +6,8 @@ import { format } from 'date-fns';
 import { Transaction } from 'src/app/interfaces/transaction';
 import * as XLSX from 'xlsx';
  import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-ricerca-movimenti3',
@@ -15,7 +17,7 @@ import * as XLSX from 'xlsx';
 export class RicercaMovimenti3Component {
 
   constructor(
-    private transactionService: TransactionService,
+    private transactionService: TransactionService, private _snackBar: MatSnackBar,
     private authService: AuthService, private route: ActivatedRoute, private router: Router) {
   }
 
@@ -28,8 +30,8 @@ export class RicercaMovimenti3Component {
   transactionList!: Transaction[]
 
 
-  ngOnInit(): void {
-    this.route.queryParams
+  initializeTransactions(){
+ this.route.queryParams
       .subscribe(params => {
         let id = params['id'];
         this.transactionService.getTransactions(id).subscribe(
@@ -37,10 +39,17 @@ export class RicercaMovimenti3Component {
             this.transactionList = res
             console.log(res)
             this.initializeDataset(this.transactionList)
+
           }
         )
       }
       );
+  }
+
+  ngOnInit(): void {
+
+    this.initializeTransactions()
+
   }
 
   addTransaction(payload: AddTransaction) {
@@ -87,14 +96,61 @@ export class RicercaMovimenti3Component {
         this.transactionService.getTransactions(id, event.number, event.type, event.startDate, event.endDate).subscribe(
           res => {
             this.transactionList = res
-            console.log(res)
             this.initializeDataset(this.transactionList)
+          },
+          err =>{
+            this._snackBar.open(err.error.message, "Ok")
           }
         )
       }
       );
 
   }
+
+
+
+  doRecharge(input: {provider: string, telephoneNumber: string, rechargeAmount: string}){
+
+        this.route.queryParams
+      .subscribe(params => {
+        let id = params['id'];
+        this.transactionService.rechargePhone(id, input.provider, input.rechargeAmount, input.telephoneNumber).pipe(take(1)).subscribe(
+          res => {
+            if(res){
+              this.initializeTransactions()
+            }
+          },
+          err=>{
+              this._snackBar.open("Errore!", "OK");
+
+          }
+        )
+      })
+    }
+
+
+  doTransfer(input: {description: string, bankAccountTo: string, amountExit: number}){
+        this.route.queryParams
+      .subscribe(params => {
+        let id = params['id'];
+        this.transactionService.transfer(id, input.description, input.bankAccountTo, input.amountExit).subscribe(
+         res => {
+
+          },
+          (err)=>{
+            console.log(err)
+            if(err.status == 200){
+                            this.initializeTransactions()
+
+            }
+            else{
+              this._snackBar.open("Errore!", "OK");
+            }
+
+          }
+        )
+      })
+    }
 
 
 }

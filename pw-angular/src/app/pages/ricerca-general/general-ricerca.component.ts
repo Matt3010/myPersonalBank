@@ -7,13 +7,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class GeneralRicercaComponent {
 
-  tab: string | null = "number";
+  tab: string | null = "period";
   id: string | null = null
 
   constructor(private route: ActivatedRoute, private router: Router){
     const tab = this.route.snapshot.queryParamMap.get("tab") ;
     this.id = this.route.snapshot.queryParamMap.get("id") ;
-    this.tab = ["number", "type", "period" ].includes(tab!) ? tab : "number";
+    this.tab = ["number", "type", "period" ].includes(tab!) ? tab : "period";
   }
 
  setTab(tab: string) {

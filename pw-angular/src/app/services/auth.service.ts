@@ -77,6 +77,14 @@ export class AuthService {
       })
   }
 
+  sendEmail(email: string){
+      return this.http.post("/api/resetPasswordEmail", {email:email})
+    }
+
+    reset(oldPassw: string, newPassw: string){
+      return this.http.patch("/api/users/changePassword", {oldPassword : oldPassw, newPassword : newPassw})
+    }
+
 }
 
 

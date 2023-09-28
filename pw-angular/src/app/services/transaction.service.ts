@@ -1,12 +1,13 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Transaction } from '../interfaces/transaction';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, isEmpty, map } from 'rxjs';
 import { TransactionType } from '../interfaces/transactionType';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import BankAccount from '../interfaces/bankAccounts';
 import { ActivatedRoute } from '@angular/router';
 import { AddTransaction } from '../interfaces/add-transaction';
+import { omitBy, pickBy } from 'lodash';
 
 
 @Injectable({
@@ -17,7 +18,7 @@ export class TransactionService {
 
 this.route.queryParams
       .subscribe(params => {
-        console.log(params); // { orderby: "price" }
+        console.log(params);
         this.id = params['id'];
       }
     );
@@ -57,9 +58,10 @@ this.route.queryParams
     if (startDate) {
       params = params.set('startDate', startDate);
     }
-    if (endDate == "1970-01-01") {
-      params = params.set('endDate', endDate!);
+    if (endDate) {
+      params = params.set('endDate', endDate);
     }
+
     return this.http.get<Transaction[]>("/api/bankAccounts/" + id + "/transactions", { params });
   }
 
@@ -73,6 +75,7 @@ this.route.queryParams
     }
 
     add(payload: AddTransaction) {
+
       this.http.post<Transaction>("/api/bankAccounts/"+ this.id+"/transactions", payload).subscribe(
             res=>{
               this.getTransactions(this.id!)
@@ -83,6 +86,19 @@ this.route.queryParams
             }
       )
     }
+
+
+
+    rechargePhone(id: string, provider: string,  rechargeAmount: string,  telephoneNumber: string){
+      return this.http.post("/api/bankAccounts/"+id+"/mobileRecharge", {operator: provider, mobile: telephoneNumber, amount: rechargeAmount})
+    }
+
+    transfer(id: string, description: string, bankAccountTo: string, quantityExit: number){
+      return this.http.post("/api/bankAccounts/"+id+"/transfer", {bankAccount: bankAccountTo, amount: quantityExit, description: description})
+    }
+
+    
+
 
 }
 

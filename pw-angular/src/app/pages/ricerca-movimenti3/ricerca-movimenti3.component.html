@@ -1,6 +1,8 @@
 
 <div  style="min-width: 980px">
 
+  <div class="fw-bold ms-4" style="font-size: 140%;">MOVIMENTI</div>
+
   <div class="ms-3 mt-3">
     <app-do-transaction-form
     [types]="(types$ | async)!"
@@ -10,7 +12,8 @@
     (filtersChange)="doQuery($event)"
     [fromMov2]="true"
     [fromMov3]="true"
-
+    (emitRecharge)="doRecharge($event)"
+    (emitTransfer)="doTransfer($event)"
     ></app-do-transaction-form>
   </div>
 

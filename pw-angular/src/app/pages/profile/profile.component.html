@@ -21,6 +21,9 @@
       </div>
     </div>
 
+    <button style="border: 0; background-color: transparent;" class="link-primary p-0 m-0" (click)=" old.reset(); new.reset(); repeat.reset();open(content)">Reset password</button>
+
+
     <div class="row">
       <div class="col-12 mt-5 ">
         <h5>My IBAN Accounts</h5>
@@ -33,3 +36,47 @@
 
   </div>
 </div>
+
+
+
+<ng-template #content let-modal style="z-index: 10000000000;">
+
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Reset password</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<form form>
+			<div class="mb-3">
+				<label for="dateOfBirth">Old password:</label>
+          <input class="form-control" type="text" [formControl]="old">
+          <small class="text-danger" style="position: relative; top: -5px" *ngIf="!old.valid && old.touched">
+            *Is required
+          </small>
+<br>
+				<label for="dateOfBirth">New password</label>
+          <input class="form-control" type="text" [formControl]="new">
+          <small class="text-danger" style="position: relative; top: -5px" *ngIf="!new.valid && new.touched">
+            *Is required
+          </small>
+<br>
+				<label for="dateOfBirth">Repeat new password</label>
+          <input class="form-control" type="text" [formControl]="repeat">
+          <small class="text-danger" style="position: relative; top: -5px" *ngIf="!repeat.valid && repeat.touched">
+            *Is required
+          </small>
+          <small class="text-danger" style="position: relative; top: -5px" *ngIf="repeat.value !== new.value">
+            Passwords don't match
+          </small>
+<br>
+					<button class="btn btn-outline-secondary bi bi-calendar3"
+          [disabled]="!this.old.valid || !this.new.valid || !this.repeat.valid || this.new.value !== this.repeat.value"
+          (click)="reset(); modal.dismiss('Cross click'); old.reset(); new.reset(); repeat.reset()"
+          type="button">Send email</button>
+
+			</div>
+		</form>
+	</div>
+</ng-template>
+
+

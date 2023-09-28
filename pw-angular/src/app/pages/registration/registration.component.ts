@@ -15,12 +15,8 @@ export class RegistrationComponent {
 
 
   formatErrorMessage(errorMessage: string) {
-    // Dividi il messaggio in base alle virgole
     const parts = errorMessage.split(',');
-
-    // Unisci le parti del messaggio con un ritorno a capo tra di loro
     const formattedMessage = parts.join(',\n');
-
     return formattedMessage;
 }
 

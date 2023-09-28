@@ -1,8 +1,36 @@
 
-<div class="container-fluid d-flex justify-content-center align-items-center bg-body-tertiary position-absolute h-100 w-100" style="min-width: 500px">
+<div class="container-fluid d-flex justify-content-center align-items-center bg-body-tertiary position-absolute h-100 w-100" style="min-width: 500px; position: fixed; top: 0;">
     <div class="col-12" style="max-width: 500px;">
         <img src="assets/images/logo.png" class="mb-4 ms-3" alt="logo" style="width: 40px; aspect-ratio: 1/1;">
         <app-login-form (loginEmit)="doLogin($event)"></app-login-form>
+        <div>
+
+            <button style="border: 0; background-color: transparent;" class="link-primary ms-3" (click)="open(content)">Forgot password? Click here</button>
+
+        </div>
     </div>
 </div>
+
+
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Change password</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<form form>
+			<div class="mb-3">
+				<label for="dateOfBirth">Your email to recover password:</label>
+          <input class="form-control" type="email" [formControl]="email">
+
+          <br>
+          <br>
+					<button class="btn btn-outline-secondary bi bi-calendar3"  (click)="sendEmail(); modal.dismiss('Cross click')" type="button">Send email</button>
+
+			</div>
+		</form>
+	</div>
+</ng-template>
+
+
 

@@ -6,7 +6,7 @@
     </ibm-modal-header>
     <section ibmModalContent>
 
-      <!--TYPES-->
+      <!-- TYPES -->
       <div class="row mb-3">
         <div class="col-12 mb-2">
           <label for="">What type of transaction do you want to do?</label>
@@ -22,7 +22,7 @@
 
       <!-- AMOUNT -->
 
-      <div class="row">
+      <div class="row" *ngIf="newTransactionForm.value.transactionType !== '650c1449a7e99de7b7813009' && newTransactionForm.value.transactionType !== '650c1425a7e99de7b7813003'">
 
         <div class="col-12 mt-3">
           <label for="">Value for the transaction:</label>
@@ -44,7 +44,7 @@
 
       <!-- DESCRIPTION -->
 
-      <div class="row mt-3">
+      <div class="row mt-3" *ngIf="newTransactionForm.value.transactionType !== '650c1449a7e99de7b7813009' ">
 
         <div class="col-12  mb-2">
           Decription:
@@ -62,6 +62,79 @@
         </div>
 
       </div>
+
+
+
+      <!-- FOR TELEPHONE RECHARGE -->
+
+
+      <!-- Choose your provider -->
+      <div class="row mb-3" *ngIf="newTransactionForm.value.transactionType == '650c1449a7e99de7b7813009'">
+        <div class="col-12 mb-2">
+          <label for="">Choose your provider</label>
+        </div>
+        <div class="col-12">
+          <cds-select formControlName="provider">
+            <option *ngFor="let item of providers" [value]="item">{{item}}</option>
+          </cds-select>
+        </div>
+      </div>
+
+      <!-- Input number -->
+      <div class="row mb-3" *ngIf="newTransactionForm.value.transactionType == '650c1449a7e99de7b7813009'">
+        <div class="col-12 mb-2">
+          <label for="">Your telephone number:</label>
+        </div>
+        <div class="col-12">
+            <ibm-label>
+                  <input ibmText id="originator-email-input" type="text" placeholder="Please input your number"
+                    formControlName="telephoneNumber">
+                </ibm-label>
+        </div>
+      </div>
+
+       <!-- Choose rechargeAmount -->
+      <div class="row mb-3" *ngIf="newTransactionForm.value.transactionType == '650c1449a7e99de7b7813009'">
+        <div class="col-12 mb-2">
+          <label for="">rechargeAmount</label>
+        </div>
+        <div class="col-12">
+          <cds-select formControlName="rechargeAmount">
+            <option *ngFor="let item of [5, 10, 15, 20, 25, 50]" [value]="item">{{item}}</option>
+          </cds-select>
+        </div>
+      </div>
+
+
+      <!-- FOR TRANSFER -->
+
+
+        <!-- Input IBAN -->
+      <div class="row mb-3" *ngIf="newTransactionForm.value.transactionType == '650c1425a7e99de7b7813003'">
+        <div class="col-12 mb-2">
+          <label for="">Iban of receiver:</label>
+        </div>
+        <div class="col-12">
+            <ibm-label>
+                  <input ibmText id="originator-email-input" type="text" placeholder="Please input the IBAN"
+                    formControlName="bankAccountTo">
+                </ibm-label>
+        </div>
+      </div>
+
+        <!-- amountExit -->
+      <div class="row mb-3" *ngIf="newTransactionForm.value.transactionType == '650c1425a7e99de7b7813003'">
+        <div class="col-12 mb-2">
+          <label for="">Iban of receiver:</label>
+        </div>
+        <div class="col-12">
+            <ibm-label>
+                  <input ibmText id="originator-email-input" type="number" placeholder="Please input the amount"
+                    formControlName="amountExit">
+                </ibm-label>
+        </div>
+      </div>
+
 
     </section>
     <ibm-modal-footer>
@@ -97,12 +170,29 @@
             <mat-select value="3" formControlName="type">
               <mat-option *ngFor="let item of types" [value]="item.id">{{item.name}}</mat-option>
             </mat-select>
+
           </mat-form-field>
         </div>
 
         <div class="col-auto ms-1 p-0" *ngIf="types && fromMov2 === true && fromMov3 === true">
 
-          <app-date-range (emitStart)="setDateStart($event)" (emitEnd)="setDateEnd($event)"></app-date-range>
+            <mat-form-field>
+              <mat-label>Start date</mat-label>
+              <input formControlName="startDate" matInput [matDatepicker]="picker1"
+                  >
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="ms-1">
+              <mat-label>End date</mat-label>
+              <input formControlName="endDate" matInput [matDatepicker]="picker2"
+                    >
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
 
         </div>
       </div>

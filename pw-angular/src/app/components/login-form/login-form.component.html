@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-body">
         <form [formGroup]="loginForm" (ngSubmit)="emitLogin()">
-            <h6 class="card-title fs-1">Log in!</h6>
+            <h6 class="card-title fs-1">Log in</h6>
             <div class="form-group">
                 <label for="email"><span class="text-danger">{{ emailError }} </span> Email:</label>
                 <input type="email" class="form-control" id="email" formControlName="email">
@@ -11,35 +11,15 @@
                 <input type="password" class="form-control" id="password" formControlName="password">
             </div>
 
+            <br>
            <div class="row m-0">
                     <div class="col-auto p-0 me-2">
                         <button type="submit" class="btn button-started">Log in</button>
                     </div>
                     <div class="col-auto m-0 p-0">
-                        <button (click)="goToRegistration()" class="btn bg-body-secondary button-started bg-transparent" style="box-shadow: none; border: solid hsl(67, 82%, 50%) 2px">Sign up</button>
+                        <button (click)="goToRegistration()" class="btn bg-body-secondary button-started bg-transparent">Sign up</button>
                     </div>
                 </div>
         </form>
     </div>
 </div>
-
-
-
-
-<!--
-
-
-   <label for="email">Email:</label>
-                        <input type="text" class="form-control" id="email" formControlName="email">
-                        <div *ngIf="emailError">
-                              <small class="text-danger">{{emailError}}</small>
-                        </div>
-
-
-                          <label for="password">Password:</label>
-                        <input type="password" class="form-control" id="password" formControlName="password">
-                         <div *ngIf="emailError">
-                              <small class="text-danger">{{passwordError}}</small>
-                        </div>
-
--->

@@ -39,6 +39,8 @@ import { DateRangeComponent } from './components/do-transaction-form/date-range/
 import { LineChartComponent } from './components/line-chart/line-chart.component';
 import { GeneralRicercaComponent } from './pages/ricerca-general/general-ricerca.component';
 import { RicercaMovimenti3Component } from './pages/ricerca-movimenti3/ricerca-movimenti3.component';
+import { LoadingComponent } from './pages/loading/loading.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -59,6 +61,7 @@ import { RicercaMovimenti3Component } from './pages/ricerca-movimenti3/ricerca-m
     GeneralRicercaComponent,
     RicercaMovimenti3Component,
     DateRangeComponent,
+    LoadingComponent,
 
 
   ],
@@ -92,6 +95,7 @@ import { RicercaMovimenti3Component } from './pages/ricerca-movimenti3/ricerca-m
     FontAwesomeModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatProgressSpinnerModule
 
 
 

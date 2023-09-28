@@ -17,9 +17,12 @@
         {{accounts.createdAt | date}}
       </td>
       <td class="row">
-        <div class="col-12">
+        <div class="col-12 d-flex justify-content-evenly">
             <button class="bg-body-secondary ms-0" (click)="goToDetail(accounts.id)" style="transform: scale(1.2);">
               <fa-icon [icon]="faUpRightFromSquare" ></fa-icon>
+            </button>
+            <button class="bg-body-secondary ms-2 ps-1" (click)="delete(accounts.id)" style="transform: scale(1.2);">
+              <fa-icon [icon]="faTrashCan" ></fa-icon>
             </button>
         </div>
       </td>

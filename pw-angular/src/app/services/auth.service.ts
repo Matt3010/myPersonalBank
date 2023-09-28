@@ -84,6 +84,12 @@ export class AuthService {
     reset(oldPassw: string, newPassw: string){
       return this.http.patch("/api/users/changePassword", {oldPassword : oldPassw, newPassword : newPassw})
     }
+    newAccount(){
+      return this.http.post("/api/bankAccounts/", {})
+    }
+    delete(id: string){
+      return this.http.delete("/api/bankAccounts/"+id)
+    }
 
 }
 

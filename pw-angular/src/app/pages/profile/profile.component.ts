@@ -45,4 +45,15 @@ export class ProfileComponent {
 
   }
 
+  newAccount(){
+    this.authService.newAccount().subscribe(
+      (res : any)=>{
+        window.location.reload()
+      },
+      (err : any)=>{
+        this._snackBar.open(err.error.message, "Ok")
+      }
+    )
+  }
+
   }

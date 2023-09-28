@@ -26,12 +26,13 @@
                 <div *ngIf="cognomeTitolareError" class="text-danger">
                 </div>
             </div>
+            <br>
            <div class="row m-0">
                     <div class="col-auto p-0 me-2">
                         <button type="submit" class="btn button-started">Sign up</button>
                     </div>
                     <div class="col-auto m-0 p-0">
-                        <button (click)="goToLogin()" class="btn bg-body-secondary button-started bg-transparent" style="box-shadow: none; border: solid hsl(67, 82%, 50%) 2px">Log in</button>
+                        <button (click)="goToLogin()" class="btn bg-body-secondary button-started bg-transparent">Log in</button>
                     </div>
                 </div>
             <div class="pt-3" *ngIf="registrationErrors !== null">

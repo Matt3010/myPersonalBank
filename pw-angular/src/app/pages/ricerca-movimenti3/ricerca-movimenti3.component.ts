@@ -88,8 +88,6 @@ export class RicercaMovimenti3Component {
 
   doQuery(event: any){
 
-    console.log(event)
-
       this.route.queryParams
       .subscribe(params => {
         let id = params['id'];

@@ -1,10 +1,9 @@
-import { Component,   Input,   OnChanges,   OnInit,   SimpleChanges,   ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import * as XLSX from 'xlsx';
 
-import { TransactionService } from 'src/app/services/transaction.service';
-import {MatPaginator} from '@angular/material/paginator';
+import { MatPaginator } from '@angular/material/paginator';
 import { Transaction } from 'src/app/interfaces/transaction';
-import { sortBy } from 'lodash';
 
 @Component({
   selector: 'app-paginator-ricerca-movimenti',
@@ -34,6 +33,22 @@ export class PaginatorRicercaMovimenti1Component implements  OnChanges{
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
+
+
+    fileName = 'movementsThree.xlsx';
+  exportExcel() {
+    /* table id is passed over here */
+    let element = document.getElementById('excel-table');
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    /* save to file */
+    XLSX.writeFile(wb, this.fileName);
+  }
+
 }
 
 

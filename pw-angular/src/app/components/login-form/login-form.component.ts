@@ -10,48 +10,31 @@ import { Login } from 'src/app/interfaces/login';
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss']
 })
-export class LoginFormComponent implements OnInit{
+export class LoginFormComponent implements OnInit {
 
 
   emailError: string | null = null;
   passwordError: string | null = null;
 
   @Output() loginEmit = new EventEmitter<Login>()
-
+  countdown: number = 30;
   constructor(private _snackBar: MatSnackBar, private fb: FormBuilder, private route: Router) {
   }
 
-ngOnInit(): void {
-  this.loginForm.valueChanges.pipe(
-    take(1)
-  ).subscribe(res => {
-    if (res) {
-      this.startTimer();
-    }
-  });
+ ngOnInit(): void {
+  this.startCountdown(); // Start the initial countdown
 }
 
-
-  startTimer() {
-
-    setTimeout(()=>{
-    this._snackBar.open("Reset in 20s" , "OK");
-    }, 10000)
-
-    setTimeout(()=>{
-    this._snackBar.open("Reset in 10s", "OK");
-    }, 20000)
-
-    setTimeout(()=>{
-      this.loginForm.reset()
-    this._snackBar.open("Reset", "OK");
-    },
-       30000)
-
-    setTimeout(()=>{
-      window.location.reload()
-    },
-       35000)
+startCountdown() {
+  const countdownInterval = setInterval(() => {
+    if (this.countdown > 0) {
+      this.countdown--;
+    } else {
+      clearInterval(countdownInterval); // Stop the interval when the countdown reaches 0
+      this.resetForm();
+      this.startCountdown(); // Start the countdown again after resetting the form
+    }
+  }, 1000); // Every 1 second
 }
 
   loginForm = this.fb.group({
@@ -59,7 +42,7 @@ ngOnInit(): void {
     password: new FormControl("", [Validators.required]),
   })
 
-   emitLogin() {
+  emitLogin() {
 
     this.emailError = null;
     this.passwordError = null;
@@ -76,9 +59,17 @@ ngOnInit(): void {
     }
   }
 
-  goToRegistration(){
+  goToRegistration() {
     this.route.navigateByUrl("registration")
   }
+
+  resetForm() {
+    // Resetta il form
+    this.loginForm.reset();
+    this.countdown = 30; // Ripristina il countdown a 30 secondi
+  }
+
+
 }
 
 

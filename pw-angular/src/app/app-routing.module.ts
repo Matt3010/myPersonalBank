@@ -6,7 +6,6 @@ import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { GeneralRicercaComponent } from './pages/ricerca-general/general-ricerca.component';
-import { LoadingComponent } from './pages/loading/loading.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"profile", pathMatch:"full"},
@@ -15,7 +14,6 @@ const routes: Routes = [
   {path:"registration", component: RegistrationComponent },
   {path: "bankAccounts/transactions", component: GeneralRicercaComponent, canActivate:[authGuard]},
   {path:"profile", component: ProfileComponent, canActivate:[authGuard] },
-  {path:"loading", component: LoadingComponent, canActivate:[authGuard] },
 ];
 
 @NgModule({

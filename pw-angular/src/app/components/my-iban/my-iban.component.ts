@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
-import BankAccounts from 'src/app/interfaces/bankAccounts';
-import {  format } from 'date-fns'
-import { faArrowUp19 } from '@fortawesome/free-solid-svg-icons';
-import { faUpRightFromSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
-import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { faTrashCan, faUpRightFromSquare, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { format } from 'date-fns';
+import { chunk, map } from 'lodash';
+import BankAccounts from 'src/app/interfaces/bankAccounts';
+import { AuthService } from 'src/app/services/auth.service';
+
 
 @Component({
   selector: 'app-my-iban',
@@ -16,6 +17,9 @@ export class MyIbanComponent {
 
   faUpRightFromSquare = faUpRightFromSquare;
   faTrashCan = faTrashCan;
+  faPenToSquare = faPenToSquare;
+
+  deleteMode: boolean = false
 
 
   @Input() bankAccounts : BankAccounts[] | null = null
@@ -55,8 +59,28 @@ export class MyIbanComponent {
   }
 
 
+  coloreCasualeScuro() {
+    const r = Math.floor(Math.random() * 3);
+    const g = Math.floor(Math.random() * 34);
+    const b = Math.floor(Math.random() * 190);
+
+    // Crea una stringa CSS con il colore generato
+    const colore = `rgb(${r},${g},${b})`;
+
+    return colore;
+  }
+
+  inserisciSpaziOgni4Caratteri(inputString : string) {
+  const chunkedArray = chunk(inputString, 4);
+
+  const resultString = map(chunkedArray, chunk => chunk.join('')).join(' ');
+
+  return resultString;
+}
+
+
   goToDetail(id: string){
-    this.route.navigate(['loading'],{ queryParams: { id: id, page: "number" } })
+      this.route.navigate(['bankAccounts/transactions'], { queryParams: { id: id, page: "period" } })
   }
 
 
@@ -71,10 +95,9 @@ export class MyIbanComponent {
     )
   }
 
+
+
 }
-
-
-
 
 
 

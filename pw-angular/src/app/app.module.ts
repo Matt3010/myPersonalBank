@@ -1,5 +1,5 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -39,8 +39,9 @@ import { DateRangeComponent } from './components/do-transaction-form/date-range/
 import { LineChartComponent } from './components/line-chart/line-chart.component';
 import { GeneralRicercaComponent } from './pages/ricerca-general/general-ricerca.component';
 import { RicercaMovimenti3Component } from './pages/ricerca-movimenti3/ricerca-movimenti3.component';
-import { LoadingComponent } from './pages/loading/loading.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { SidebarModule } from 'ng-sidebar';
 
 
 @NgModule({
@@ -61,7 +62,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     GeneralRicercaComponent,
     RicercaMovimenti3Component,
     DateRangeComponent,
-    LoadingComponent,
+    SidebarComponent,
 
 
   ],
@@ -95,8 +96,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     FontAwesomeModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatProgressSpinnerModule
-
+    MatProgressSpinnerModule,
+    SidebarModule.forRoot()
 
 
   ],

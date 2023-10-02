@@ -7,17 +7,21 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit  {
   list: any;
   currentRoute: string | null = null
 
-    constructor(private route: Router, private authSrv: AuthService)  {}
+  constructor(private route: Router, private authSrv: AuthService)  {}
 
+  currentUser$ = this.authSrv.currentUser$
+  url! : string
 
   ngOnInit(): void {
-    //this.currentRoute = this.route.url
-    //this.list = pages.getPagesByRoute(this.currentRoute)
+       this.url = this.route.url
+
   }
+
+
 
   @Output() emitLogout = new EventEmitter<void>()
 
@@ -35,6 +39,5 @@ export class NavbarComponent implements OnInit {
     this.route.navigateByUrl("profile")
   }
 
-  currentUser$ = this.authSrv.currentUser$
 
 }

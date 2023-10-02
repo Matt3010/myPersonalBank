@@ -1,9 +1,48 @@
+<div class="card">
 
-<h1 class="ms-4 mb-3">
-  Your trend
-</h1>
-<div class="chart-container mb-5 pb-5 ps-4 pe-4" style="height: 300px;">
-     <canvas  id="MyChart" >{{ chart }}</canvas>
+  <div class="row m-4">
+
+    <div class="col" style="font-size: 14px; color: black; font-weight: 500;">
+      Your total balance is
+      <br>
+      <span style="font-size: 36px; font-weight: bold;">{{data[0] | currency:'EUR':true }}</span>
+      <span *ngIf="!data[0]" style="font-size: 36px; font-weight: bold;">N/A</span>
+    </div>
+    <div class="col-auto">
+
+      <div class=" col-12 d-flex flex-row ms-2">
+        <button [ngClass]="{'active': last == 2, 'disabled': last !== 2}" (click)="last = 2; updateChart()">2</button>
+        <button [ngClass]="{'active': last == 5, 'disabled': last !== 5}" (click)="last = 5; updateChart()">5</button>
+        <button [ngClass]="{'active': last == 10, 'disabled': last !== 10}" (click)="last = 10; updateChart()">10</button>
+        <button [ngClass]="{'active': last == 15, 'disabled': last !== 15}" (click)="last = 15; updateChart()">15</button>
+        <button [ngClass]="{'active': last == 20, 'disabled': last !== 20}" (click)="last = 20; updateChart()">20</button>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="chart-container pb-3 ps-3 pe-3" style="height: 300px;">
+    <canvas id="MyChart">{{ chart }}</canvas>
+  </div>
+
+
+
 </div>
 
 
+
+
+
+
+
+
+
+<!--
+
+
+
+
+-->

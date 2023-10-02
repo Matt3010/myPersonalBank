@@ -1,4 +1,8 @@
 
+
+        <button style="height: 45px; position: relative; top: -538px; left: 1090px; transform: scale(0.8);" mat-flat-button (click)="openParentModal()" color="accent">New transaction</button>
+
+
 <form [formGroup]="newTransactionForm" *ngIf="currentUser">
   <ibm-modal id="parent-modal" [open]="isParentOpen">
     <ibm-modal-header (closeSelect)="closeParentModal()">
@@ -146,10 +150,12 @@
 </form>
 
 
-<div class="row mb-0" style="min-width: 800px;">
-  <div class="col-auto" style="position: fixed; z-index: 1000000; top: 9px; right: 20px">
-        <button style="height: 45px;" mat-flat-button (click)="openParentModal()" color="accent">New transaction</button>
-  </div>
+
+<!--QUERY-->
+
+
+
+<div class="row m-0 p-0" style="min-width: 800px;">
 
   <div class="ms-4">
     <small>Filter by:</small>
@@ -158,7 +164,7 @@
     <form [formGroup]="query">
       <div class="row">
         <div class="col-auto ms-2 p-0">
-          <mat-form-field class="example-full-width">
+          <mat-form-field style="position: relative; width: 100px;" class="example-full-width">
             <mat-label>Quantity</mat-label>
             <input min="0" type="number" matInput formControlName="number">
           </mat-form-field>
@@ -176,8 +182,7 @@
 
         <div class="col-auto ms-1 p-0" *ngIf="types && fromMov2 === true && fromMov3 === true">
 
-            <mat-form-field>
-              <mat-label>Start date</mat-label>
+            <mat-form-field  style="position: relative; width: 100px;">
               <input formControlName="startDate" matInput [matDatepicker]="picker1"
                   >
               <mat-hint>MM/DD/YYYY</mat-hint>
@@ -185,8 +190,7 @@
               <mat-datepicker #picker1></mat-datepicker>
             </mat-form-field>
 
-            <mat-form-field class="ms-1">
-              <mat-label>End date</mat-label>
+            <mat-form-field class="ms-1"  style="position: relative; width: 100px;">
               <input formControlName="endDate" matInput [matDatepicker]="picker2"
                     >
               <mat-hint>MM/DD/YYYY</mat-hint>
@@ -199,3 +203,7 @@
     </form>
   </div>
 </div>
+
+
+
+

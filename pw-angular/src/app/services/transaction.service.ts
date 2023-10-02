@@ -81,8 +81,8 @@ this.route.queryParams
               this.getTransactions(this.id!)
               window.location.reload()
             },
-            (err: Error)=>{
-              this._snackBar.open("Errore!", "OK");
+            (err)=>{
+              this._snackBar.open(err.error.message, "OK");
             }
       )
     }
@@ -97,7 +97,7 @@ this.route.queryParams
       return this.http.post("/api/bankAccounts/"+id+"/transfer", {bankAccount: bankAccountTo, amount: quantityExit, description: description})
     }
 
-    
+
 
 
 }

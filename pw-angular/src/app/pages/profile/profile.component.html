@@ -1,87 +1,81 @@
-<div class="row mt-5 ms-5" style="min-width: 630px">
-  <div class="col-12" *ngIf="!!(currentUser$ | async) === true">
-
-    <div class="row">
-      <div class="col-12">
-        <h5 style="font-size: 34px">Profile</h5>
-      </div>
-    </div>
-
-    <div class="row mt-3" *ngIf="currentUser$ | async">
-      <div class="col-4">
-        Firstname: <span class="fw-bold">{{(currentUser$ | async)!.user.firstName}}</span>
-      </div>
-      <div class="col-6">
-        Lastname: <span class="fw-bold">{{(currentUser$ | async)!.user.lastName}}</span>
-      </div>
-    </div>
-    <div class="row mt-3" *ngIf="currentUser$ | async">
-      <div class="col-7">
-       Email: <span class="fw-bold">{{(currentUser$ | async)!.email}}</span>
-      </div>
-    </div>
-
-    <button style="border: 0; background-color: transparent;" class="link-primary p-0 m-0" (click)=" old.reset(); new.reset(); repeat.reset();open(content)">Reset password</button>
 
 
-    <div class="row">
-      <div class="col-12 mt-5 ">
-        <h5>My IBAN Accounts</h5>
-        <div class="me-5">
-        <app-my-iban [bankAccounts]="(bankAccounts$ | async)!"></app-my-iban>
+    <div class="card m-4">
+      <div class="row m-0 p-0">
+
+        <div class="col-md-auto d-flex align-items-center justify-content-center">
+          <img style="width: 140px;" src="../../../assets/images/up.png" alt="User profile img">
         </div>
+
+        <div class="col-md d-flex align-items-center">
+          <div class="row">
+            <span class="fw-bold col-12 fullName">{{(currentUser$ | async)!.user.firstName}} {{(currentUser$ |
+              async)!.user.lastName}}</span>
+            <span class="fw-bold col-12">{{(currentUser$ | async)!.email}}</span>
+          </div>
+        </div>
+
+        <button style="border: 0; background-color: transparent;" class="link-primary p-0 m-0 mt-4"
+          (click)=" old.reset(); new.reset(); repeat.reset();open(content)">
+          Reset password
+        </button>
+
       </div>
+
+
     </div>
 
 
-  </div>
-</div>
 
+
+    <div>
+      <app-my-iban [bankAccounts]="(bankAccounts$ | async)!"></app-my-iban>
+    </div>
 
 
 <ng-template #content let-modal style="z-index: 10000000000;">
 
-	<div class="modal-header">
-		<h4 class="modal-title" id="modal-basic-title">Reset password</h4>
-		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-	</div>
-	<div class="modal-body">
-		<form form>
-			<div class="mb-3">
-				<label for="dateOfBirth">Old password:</label>
-          <input class="form-control" type="text" [formControl]="old">
-          <small class="text-danger" style="position: relative; top: -5px" *ngIf="!old.valid && old.touched">
-            *Is required
-          </small>
-<br>
-				<label for="dateOfBirth">New password</label>
-          <input class="form-control" type="text" [formControl]="new">
-          <small class="text-danger" style="position: relative; top: -5px" *ngIf="!new.valid && new.touched">
-            *Is required
-          </small>
-<br>
-				<label for="dateOfBirth">Repeat new password</label>
-          <input class="form-control" type="text" [formControl]="repeat">
-          <small class="text-danger" style="position: relative; top: -5px" *ngIf="!repeat.valid && repeat.touched">
-            *Is required
-          </small>
-          <small class="text-danger" style="position: relative; top: -5px" *ngIf="repeat.value !== new.value">
-            Passwords don't match
-          </small>
-<br>
-					<button class="btn btn-outline-secondary bi bi-calendar3"
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Reset password</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form form>
+      <div class="mb-3">
+        <label for="dateOfBirth">Old password:</label>
+        <input class="form-control" type="text" [formControl]="old">
+        <small class="text-danger" style="position: relative; top: -5px" *ngIf="!old.valid && old.touched">
+          *Is required
+        </small>
+        <br>
+        <label for="dateOfBirth">New password</label>
+        <input class="form-control" type="text" [formControl]="new">
+        <small class="text-danger" style="position: relative; top: -5px" *ngIf="!new.valid && new.touched">
+          *Is required
+        </small>
+        <br>
+        <label for="dateOfBirth">Repeat new password</label>
+        <input class="form-control" type="text" [formControl]="repeat">
+        <small class="text-danger" style="position: relative; top: -5px" *ngIf="!repeat.valid && repeat.touched">
+          *Is required
+        </small>
+        <small class="text-danger" style="position: relative; top: -5px" *ngIf="repeat.value !== new.value">
+          Passwords don't match
+        </small>
+        <br>
+        <button class="btn btn-outline-secondary bi bi-calendar3"
           [disabled]="!this.old.valid || !this.new.valid || !this.repeat.valid || this.new.value !== this.repeat.value"
-          (click)="reset(); modal.dismiss('Cross click'); old.reset(); new.reset(); repeat.reset()"
-          type="button">Send email</button>
+          (click)="reset(); modal.dismiss('Cross click'); old.reset(); new.reset(); repeat.reset()" type="button">Send
+          email</button>
 
-			</div>
-		</form>
-	</div>
+      </div>
+    </form>
+  </div>
 </ng-template>
 
 
-     <div (click)="newAccount()" class="example-button-container" style="position: fixed; bottom: 20px; right: 20px;">
-        <button class="butt" mat-fab color="accent" aria-label="Example icon button with a bookmark icon">
-          <mat-icon>add</mat-icon>
-        </button>
-      </div>
+<div (click)="newAccount()" class="example-button-container" style="position: fixed; bottom: 20px; right: 20px;">
+  <button class="butt" mat-fab color="accent" aria-label="Example icon button with a bookmark icon">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

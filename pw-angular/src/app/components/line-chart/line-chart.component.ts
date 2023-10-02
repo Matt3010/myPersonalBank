@@ -1,18 +1,20 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Chart } from 'chart.js/auto'
-import { orderBy, reverse } from 'lodash';
+import { orderBy, reverse, take, takeRight } from 'lodash';
 
 @Component({
   selector: 'app-line-chart',
   templateUrl: './line-chart.component.html',
   styleUrls: ['./line-chart.component.scss']
 })
-export class LineChartComponent implements OnInit {
+export class LineChartComponent implements OnInit, OnChanges {
 
   @Input() labels: string[] = []
   @Input() data: string[] = []
   @Output() updateEmit = new EventEmitter<boolean>()
   public chart!: Chart;
+  last: number = 5
+  chartRef: any;
 
   ngOnInit(): void {
     window.setTimeout(() => {
@@ -20,19 +22,30 @@ export class LineChartComponent implements OnInit {
     }, 100)
   }
 
+ngOnChanges(changes: SimpleChanges): void {
+    this.updateChart()
+}
+
+  updateChart(){
+    this.chart.destroy()
+    this.ngOnInit()
+  }
+
   createChart() {
 
-    const colors = ['red', 'green'];
+
     this.chart = new Chart("MyChart", {
       type: 'line',
       data: {
-        labels: orderBy(this.labels),
+        labels: takeRight(orderBy(this.labels),this.last),
         datasets: [{
           label: 'Trend',
-          data: reverse([...this.data.map(value => parseFloat(value))]), // Convert string to number
+          data: takeRight(reverse([...this.data.map(value => parseFloat(value))]),this.last),
           fill: true,
-          borderColor: 'rgb(75, 192, 192)',
-          tension: 0.4
+          borderColor: '#8955fd',
+          tension: 0.4,
+          backgroundColor: ['#e9dfff'], // Assegna il gradiente come sfondo
+
         }]
       },
       options: {
@@ -44,22 +57,26 @@ export class LineChartComponent implements OnInit {
             }
           },
           y: {
+            display: false,
             grid: {
-              display: false
+              display: true
             },
-            ticks: {
-              color: (ctx) => {
-                // Access the tick's value, cast it back to string, and compare it
-                const tickValue = parseFloat((ctx.tick.value).toString()).toString();
-                return tickValue >= '0' ? 'green' : 'red';
-              }
-            }
+
           }
-        }
-      },
+        },
+        plugins:{
+        legend: {
+            display: false,
+         },
+
+      }
+      }
+
 
 
     });
   }
-}
 
+
+
+}

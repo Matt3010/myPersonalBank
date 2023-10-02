@@ -1,36 +1,30 @@
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-<table class="mt-4">
-  <thead>
-    <tr>
-      <th>Iban</th>
-      <th>Created at</th>
-      <th class="col-2">Actions</th>
-    </tr>
-  </thead>
-  <tbody *ngIf="bankAccounts">
-    <tr *ngFor="let accounts of bankAccounts">
+  <div class="cont ms-4">
+        <fa-icon (click)="deleteMode = !deleteMode" [icon]="faPenToSquare"></fa-icon>
+  </div>
 
-      <td>
-        {{accounts.iban}}
-      </td>
-      <td>
-        {{accounts.createdAt | date}}
-      </td>
-      <td class="row">
-        <div class="col-12 d-flex justify-content-evenly">
-            <button class="bg-body-secondary ms-0" (click)="goToDetail(accounts.id)" style="transform: scale(1.2);">
-              <fa-icon [icon]="faUpRightFromSquare" ></fa-icon>
-            </button>
-            <button class="bg-body-secondary ms-2 ps-1" (click)="delete(accounts.id)" style="transform: scale(1.2);">
-              <fa-icon [icon]="faTrashCan" ></fa-icon>
-            </button>
-        </div>
-      </td>
-    </tr>
-    <tr bgcolor="#1060fe" style="border:solid hsl(195deg 8% 92%) 1px; height: 30px;" >
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
+<div class="container-fluid m-0 p-0 d-flex ">
+
+  <div *ngFor="let account of bankAccounts" class="card overflow-hidden m-4">
+    <div style="width: 100%; height: 40px; position: relative;" [style.background]="coloreCasualeScuro()">&nbsp;</div>
+
+    <div class="card-body">
+
+      <h5 class="card-title"><a class="link" style="cursor: pointer;"  (click)="goToDetail(account.id)">{{inserisciSpaziOgni4Caratteri(account.iban)}}</a></h5>
+        <span style="padding: 4px; background-color: hsl(150deg 45% 90%); color: hsl(145deg 100% 18%); border-radius: 3px; font-size: 12px;">Ref ID: {{account.id}}</span>
+        <br>
+        <span style="padding: 4px; background-color: hsl(150deg 45% 90%); color: hsl(145deg 100% 18%); border-radius: 3px; font-size: 12px;">Created at: {{account.createdAt | date}}</span>
+
+      <div *ngIf="deleteMode" class="row mt-4 d-flex align-items-center justify-content-end" style="transform: scale(0.8);">
+          <button style="width: 180px;" class="btn btn-danger" (click)="delete(account.id)">Delete Account</button>
+      </div>
+
+
+    </div>
+  </div>
+
+</div>

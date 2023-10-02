@@ -1,0 +1,24 @@
+div {
+  position: absolute;
+  width: 300px;
+  height: 100%;
+  background-color: rgb(60, 38, 70);
+  top: 0;
+  left: 0;
+
+  z-index: 1000000;
+
+  animation: in 0.4s ease;
+  overflow: hidden;
+
+}
+
+@keyframes in {
+  from {
+    width: 0px;
+  }
+
+  to {
+    width: 300px;
+  }
+}

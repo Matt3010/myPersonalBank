@@ -16,6 +16,7 @@
         <button [ngClass]="{'active': last == 10, 'disabled': last !== 10}" (click)="last = 10; updateChart()">10</button>
         <button [ngClass]="{'active': last == 15, 'disabled': last !== 15}" (click)="last = 15; updateChart()">15</button>
         <button [ngClass]="{'active': last == 20, 'disabled': last !== 20}" (click)="last = 20; updateChart()">20</button>
+        <button style="width: 40px;" [ngClass]="{'active': last == 100, 'disabled': last !== 100}" (click)="last = 100; updateChart()">100</button>
       </div>
 
     </div>

@@ -1,33 +1,19 @@
 
 
     <div class="card m-4">
-      <div class="row m-0 p-0">
-
-        <div class="col-md-auto d-flex align-items-center justify-content-center">
-        </div>
 
         <div class="row d-flex justify-content-center">
             <img style="width: 140px;" src="../../../assets/images/up.png" alt="User profile img">
             <span class="fw-bold col-12 d-flex justify-content-center">{{(currentUser$ | async)!.user.firstName}} {{(currentUser$ | async)!.user.lastName}}</span>
             <span class=" col-12 d-flex justify-content-center">{{(currentUser$ | async)!.email}}</span>
 
-               <button style="border: 0; background-color: transparent;" class="link-primary p-0 m-0 mt-4"
-          (click)=" old.reset(); new.reset(); repeat.reset();open(content)">
-          Reset password
-        </button>
+            <button style="border: 0; background-color: transparent;" class="link-primary p-0 m-0 mt-4" (click)=" old.reset(); new.reset(); repeat.reset();open(content)">
+                  Reset password
+            </button>
 
 
           </div>
-
-
-
-      </div>
-
-
     </div>
-
-
-
 
     <div>
       <app-my-iban [bankAccounts]="(bankAccounts$ | async)!"></app-my-iban>

@@ -1,36 +1,36 @@
-<div class="card col-12 ">
+<div class="card col-12">
 
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" id="excel-table"> >
 
     <ng-container matColumnDef="bankAccount">
-      <th mat-header-cell *matHeaderCellDef> Account ID </th>
+      <th *matHeaderCellDef> Account ID </th>
       <td mat-cell *matCellDef="let element"> {{element.bankAccount}} </td>
     </ng-container>
 
     <ng-container matColumnDef="createdAt">
       <th mat-header-cell *matHeaderCellDef> Created at </th>
-      <td mat-cell *matCellDef="let element"> {{element.createdAt | date: 'medium'}} </td>
+      <td mat-cell *matCellDef="let element"> <span class="badge bg-body-secondary text-dark">{{element.createdAt | date: 'd/MM/yyyy'}}</span> </td>
     </ng-container>
 
     <ng-container matColumnDef="balance" *ngIf="fromMov2 === true">
       <th mat-header-cell *matHeaderCellDef> Balance </th>
-      <td mat-cell *matCellDef="let element"> {{element.balance}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.balance | currency:'EUR':true }} </td>
     </ng-container>
 
     <ng-container matColumnDef="amount">
       <th mat-header-cell *matHeaderCellDef> Amonut </th>
-      <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+      <td mat-cell *matCellDef="let element"><span class="badge bg-success">{{element.amount | currency:'EUR':true }}</span></td>
     </ng-container>
 
     <ng-container matColumnDef="transactionType">
       <th mat-header-cell *matHeaderCellDef> Type </th>
-      <td mat-cell *matCellDef="let element"> {{element.transactionType.name}} </td>
+      <td mat-cell *matCellDef="let element" class="pill"> <span class="badge bg-info">{{element.transactionType.name}} </span></td>
     </ng-container>
 
     <ng-container matColumnDef="description">
       <th mat-header-cell *matHeaderCellDef> Desc. </th>
-      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+      <td mat-cell *matCellDef="let element" style="font-size: 13px;"> {{element.description}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -49,10 +49,5 @@
 
 
 
-  <div (click)="exportExcel()" class="example-button-container mt-3 mb-3 ms-3">
-        <button class="butt" mat-fab color="accent" aria-label="Example icon button with a bookmark icon">
-          <mat-icon>play_for_work</mat-icon>
-        </button>
-      </div>
 
 

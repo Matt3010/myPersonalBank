@@ -1,0 +1,18 @@
+#dropdownBasic1 {
+  border: 0;
+  position: relative;
+  top: 1.5px;
+  left: -5px;
+  height: 37px;
+  padding: 0 10px;
+  border-radius: 4px;
+}
+
+mat-form-field {
+  width: 300px;
+  margin: 5px;
+}
+
+mat-mdc-table {
+  table-layout: auto;
+}

@@ -1,5 +1,14 @@
-.example-button-container {
+.download {
   position: fixed;
-  bottom: 30px;
-  right: 20px
+  bottom: -9px;
+  right: -9px;
+  transform: translate(-50%, -50%);
+
+}
+
+
+.card {
+  border: solid hsl(0deg 0% 92%) 1px;
+  border-radius: 15px;
+  margin: 35px;
 }

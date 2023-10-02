@@ -52,8 +52,7 @@
         <br>
         <button class="btn btn-outline-secondary bi bi-calendar3"
           [disabled]="!this.old.valid || !this.new.valid || !this.repeat.valid || this.new.value !== this.repeat.value"
-          (click)="reset(); modal.dismiss('Cross click'); old.reset(); new.reset(); repeat.reset()" type="button">Send
-          email</button>
+          (click)="reset(); modal.dismiss('Cross click'); old.reset(); new.reset(); repeat.reset()" type="button">Reset password</button>
 
       </div>
     </form>

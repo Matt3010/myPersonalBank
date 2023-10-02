@@ -60,9 +60,10 @@ export class RicercaMovimenti3Component {
     }, 1000)
   }
 
-  addTransaction(payload: AddTransaction) {
+   addTransaction(payload: AddTransaction) {
     this.transactionService.add(payload)
   }
+
 
   initializeDataset(inputLabels: Transaction[]) {
     let labels: Array<string> = [];

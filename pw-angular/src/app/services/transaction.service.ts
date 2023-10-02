@@ -78,13 +78,14 @@ this.route.queryParams
 
       this.http.post<Transaction>("/api/bankAccounts/"+ this.id+"/transactions", payload).subscribe(
             res=>{
-              this.getTransactions(this.id!)
-              window.location.reload()
+            window.location.reload()
             },
             (err)=>{
               this._snackBar.open(err.error.message, "OK");
             }
+
       )
+
     }
 
 

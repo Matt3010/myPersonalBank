@@ -2,111 +2,61 @@
 
 
   <form [formGroup]="query">
-
-    <div class="mb-2 mt-1 ms-1">
-          <button  style="border-top-left-radius: 13px;" mat-flat-button (click)="openParentModal()" color="accent">New transaction</button>
-
-
-    <div ngbDropdown class="d-inline-block ms-1">
-			<button class="ms-2" type="button" id="dropdownBasic1" ngbDropdownToggle>
-       <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
-     <path d="M3.9 54.9C10.5 40.9 24.5 32 40 32H472c15.5 0 29.5 8.9 36.1 22.9s4.6 30.5-5.2 42.5L320 320.9V448c0 12.1-6.8 23.2-17.7 28.6s-23.8 4.3-33.5-3l-64-48c-8.1-6-12.8-15.5-12.8-25.6V320.9L9 97.3C-.7 85.4-2.8 68.8 3.9 54.9z"/></svg>
-			</button>
-			<div ngbDropdownMenu class="row">
-
-        <div class="col-12">
-          <mat-form-field>
-            <mat-label>Quantity</mat-label>
-            <input min="0" type="number" matInput formControlName="number">
-          </mat-form-field>
-        </div>
-
-        <div class="col-12">
-          <mat-form-field>
-              <mat-label>Type</mat-label>
-              <mat-select value="3" formControlName="type">
-                <mat-option *ngFor="let item of types" [value]="item.id">{{item.name}}</mat-option>
-              </mat-select>
-        </mat-form-field>
-        </div>
-        <div class="col-12">
-            <mat-form-field>
-              <input formControlName="startDate" matInput [matDatepicker]="picker1">
-                  <mat-label>Start date</mat-label>
-              <mat-hint>MM/DD/YYYY</mat-hint>
-              <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
-              <mat-datepicker #picker1></mat-datepicker>
-            </mat-form-field>
-
-        </div>
-        <div class="col-12">
-            <mat-form-field>
-              <input formControlName="endDate" matInput [matDatepicker]="picker2" >
-              <mat-label>End date</mat-label>
-              <mat-hint>MM/DD/YYYY</mat-hint>
-              <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
-              <mat-datepicker #picker2></mat-datepicker>
-            </mat-form-field>
-        </div>
+      <div class="mb-2  ms-1">
+                <button  style="border-top-left-radius: 13px;" mat-flat-button (click)="openParentModal()" color="accent">New transaction</button>
 
 
+          <div ngbDropdown class="d-inline-block ms-1">
+            <button class="ms-2" type="button" id="dropdownBasic1" ngbDropdownToggle>
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+          <path d="M3.9 54.9C10.5 40.9 24.5 32 40 32H472c15.5 0 29.5 8.9 36.1 22.9s4.6 30.5-5.2 42.5L320 320.9V448c0 12.1-6.8 23.2-17.7 28.6s-23.8 4.3-33.5-3l-64-48c-8.1-6-12.8-15.5-12.8-25.6V320.9L9 97.3C-.7 85.4-2.8 68.8 3.9 54.9z"/></svg>
+            </button>
+            <div ngbDropdownMenu class="row">
+
+              <div class="col-12">
+                <mat-form-field>
+                  <mat-label>Quantity</mat-label>
+                  <input min="0" type="number" matInput formControlName="number">
+                </mat-form-field>
+              </div>
+
+              <div class="col-12">
+                <mat-form-field>
+                    <mat-label>Type</mat-label>
+                    <mat-select value="3" formControlName="type">
+                      <mat-option *ngFor="let item of types" [value]="item.id">{{item.name}}</mat-option>
+                    </mat-select>
+              </mat-form-field>
+              </div>
+              <div class="col-12">
+                  <mat-form-field>
+                    <input formControlName="startDate" matInput [matDatepicker]="picker1">
+                        <mat-label>Start date</mat-label>
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                  </mat-form-field>
+
+              </div>
+              <div class="col-12">
+                  <mat-form-field>
+                    <input formControlName="endDate" matInput [matDatepicker]="picker2" >
+                    <mat-label>End date</mat-label>
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                  </mat-form-field>
+              </div>
 
 
+              <p (click)="query.reset()" class="ms-2 mb-0 pb-0" *ngIf="query.dirty">Reset filters</p>
 
-
-        </div>
-		</div>
-
-    </div>
-
-
-          <div class="d-none">
-
-
-
-
-
-
-
+              </div>
           </div>
+      </div>
+
 
   </form>
-
-
-
-
-
-<!--QUERY-->
-
-
-<div class="row m-0 p-0" style="min-width: 800px;">
-
-
-  <div class="col-12 ms-3">
-    <form [formGroup]="query">
-      <div class="row">
-        <div class="col-auto ms-2 p-0">
-
-        </div>
-
-        <div class="col-auto ms-1 p-0" *ngIf="types && fromMov2 === true">
-
-        </div>
-
-        <div class="col-auto ms-1 p-0" *ngIf="types && fromMov2 === true && fromMov3 === true">
-
-
-
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
-
-
-
-
-
 
 
 
@@ -186,6 +136,7 @@
         </div>
         <div class="col-12">
           <cds-select formControlName="provider">
+            <option selected value="">Select your provider</option>
             <option *ngFor="let item of providers" [value]="item">{{item}}</option>
           </cds-select>
         </div>
@@ -211,6 +162,7 @@
         </div>
         <div class="col-12">
           <cds-select formControlName="rechargeAmount">
+            <option selected value="">Select the amount</option>
             <option *ngFor="let item of [5, 10, 15, 20, 25, 50]" [value]="item">{{item}}</option>
           </cds-select>
         </div>

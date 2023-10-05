@@ -1,13 +1,12 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Transaction } from '../interfaces/transaction';
-import { BehaviorSubject, Observable, isEmpty, map } from 'rxjs';
-import { TransactionType } from '../interfaces/transactionType';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import BankAccount from '../interfaces/bankAccounts';
 import { ActivatedRoute } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { AddTransaction } from '../interfaces/add-transaction';
-import { omitBy, pickBy } from 'lodash';
+import BankAccount from '../interfaces/bankAccounts';
+import { Transaction } from '../interfaces/transaction';
+import { TransactionType } from '../interfaces/transactionType';
 
 
 @Injectable({
@@ -98,6 +97,10 @@ this.route.queryParams
       return this.http.post("/api/bankAccounts/"+id+"/transfer", {bankAccount: bankAccountTo, amount: quantityExit, description: description})
     }
 
+
+    getDetails(id: string){
+      return this.http.get("/api/transactions/"+id)
+    }
 
 
 

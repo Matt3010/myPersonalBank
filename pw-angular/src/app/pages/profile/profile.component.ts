@@ -34,10 +34,14 @@ export class ProfileComponent {
     if(this.old.valid && this.new.valid && this.repeat.valid && this.new.value == this.repeat.value){
       this.authService.reset(this.old.value!, this.new.value!).subscribe(
         (res : any)=>{
-          this._snackBar.open("Password changed", "Ok")
+          this._snackBar.open("Password changed", "Ok",  {
+            duration: 3000,
+          })
         },
         (err : any)=>{
-          this._snackBar.open(err.error.message, "Ok")
+          this._snackBar.open(err.error.message, "Ok", {
+            duration: 3000,
+          })
         }
       )
     }
@@ -51,7 +55,7 @@ export class ProfileComponent {
         window.location.reload()
       },
       (err : any)=>{
-        this._snackBar.open(err.error.message, "Ok")
+        this._snackBar.open(err.error.message, "Ok", )
       }
     )
   }

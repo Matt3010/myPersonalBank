@@ -90,7 +90,9 @@ export class MyIbanComponent {
         window.location.reload()
       },
       (err: any)=>{
-        this._snackBar.open("Error! Account not deleted. Retry later!", "Ok")
+        this._snackBar.open("Error! Account not deleted. Retry later!", "Ok",  {
+            duration: 3000,
+          })
       }
     )
   }

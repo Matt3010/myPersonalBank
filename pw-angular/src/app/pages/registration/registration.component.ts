@@ -23,7 +23,9 @@ export class RegistrationComponent {
   doRegistration(registrationData: Registration) {
     this.authService.register(registrationData).subscribe(
       (res) => {
-        this._snackBar.open("User "+ res.email +" in successfully", "OK");
+        this._snackBar.open("User "+ res.firstName +" in successfully", "OK",  {
+            duration: 3000,
+          });
 
         this.route.navigateByUrl("/login")
       },

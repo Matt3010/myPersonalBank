@@ -12,7 +12,7 @@
 
     <div class="card-body">
 
-      <h5 class="card-title"><a class="link" style="cursor: pointer;"  (click)="goToDetail(account.id)">{{inserisciSpaziOgni4Caratteri(account.iban)}}</a></h5>
+      <h5 class="card-title"><a id="style-2" style="cursor: pointer; "  (click)="goToDetail(account.id)">{{inserisciSpaziOgni4Caratteri(account.iban)}}</a></h5>
         <span style="padding: 4px; background-color: hsl(150deg 45% 90%); color: hsl(145deg 100% 18%); border-radius: 3px; font-size: 12px;">Ref ID: {{account.id}}</span>
         <br>
         <span style="padding: 4px; background-color: hsl(150deg 45% 90%); color: hsl(145deg 100% 18%); border-radius: 3px; font-size: 12px;">Created at: {{account.createdAt | date}}</span>

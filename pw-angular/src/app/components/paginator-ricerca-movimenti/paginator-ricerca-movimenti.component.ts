@@ -3,6 +3,8 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import { MatPaginator } from '@angular/material/paginator';
 import { Transaction } from 'src/app/interfaces/transaction';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TransactionService } from 'src/app/services/transaction.service';
 
 @Component({
   selector: 'app-paginator-ricerca-movimenti',
@@ -18,10 +20,23 @@ export class PaginatorRicercaMovimenti1Component implements  OnChanges{
   dataSource: MatTableDataSource<Transaction>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @Input() fromMov2 = true;
+  detailsForModals: any
 
-  constructor() {
+
+
+
+  constructor(private modalService: NgbModal, private trasnactionSrv: TransactionService) {
     this.dataSource = new MatTableDataSource();
   }
+
+
+
+  takeDetails(id: string){
+    this.trasnactionSrv.getDetails(id).subscribe(details=>{
+       this.detailsForModals = details
+    })
+  }
+
 
   ngOnChanges(changes: SimpleChanges): void {
           const sortedList = this.transactionList
@@ -33,6 +48,10 @@ export class PaginatorRicercaMovimenti1Component implements  OnChanges{
     this.dataSource.paginator = this.paginator;
   }
 
+  open(content: any) {
+		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+		);
+	}
 
 }
 

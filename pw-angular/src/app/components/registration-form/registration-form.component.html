@@ -29,7 +29,7 @@
             <br>
            <div class="row m-0">
                     <div class="col-auto p-0 me-2">
-                        <button type="submit" class="btn button-started">Sign up</button>
+                        <button type="submit" [disabled]="!registrationForm.valid" class="btn button-started">Sign up</button>
                     </div>
                     <div class="col-auto m-0 p-0">
                         <button (click)="goToLogin()" class="btn bg-body-secondary button-started bg-transparent">Log in</button>

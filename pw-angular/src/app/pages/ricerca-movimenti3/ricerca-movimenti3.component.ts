@@ -105,7 +105,9 @@ export class RicercaMovimenti3Component {
             this.transactionList = res
           },
           err => {
-            this._snackBar.open(err.error.message, "Ok")
+            this._snackBar.open(err.error.message, "Ok",  {
+            duration: 3000,
+          })
           }
         )
       }
@@ -128,7 +130,9 @@ export class RicercaMovimenti3Component {
             }
           },
           err => {
-            this._snackBar.open(err.error.message, "OK");
+            this._snackBar.open(err.error.message, "OK",  {
+            duration: 3000,
+          });
           }
         )
       })
@@ -148,7 +152,9 @@ export class RicercaMovimenti3Component {
             if (err.status == 200) {
             }
             else {
-              this._snackBar.open("Errore!", "OK");
+              this._snackBar.open(err.error.message, "OK",  {
+            duration: 3000,
+          });
             }
 
           }

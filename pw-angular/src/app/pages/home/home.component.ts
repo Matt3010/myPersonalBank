@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { TransactionService } from 'src/app/services/transaction.service';
+import { Component } from '@angular/core';
 
 @Component({
   templateUrl: './home.component.html',

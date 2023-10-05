@@ -1,5 +1,5 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -30,18 +30,18 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SidebarModule } from 'ng-sidebar';
 import { DateRangeComponent } from './components/do-transaction-form/date-range/date-range.component';
 import { LineChartComponent } from './components/line-chart/line-chart.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { GeneralRicercaComponent } from './pages/ricerca-general/general-ricerca.component';
 import { RicercaMovimenti3Component } from './pages/ricerca-movimenti3/ricerca-movimenti3.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { SidebarModule } from 'ng-sidebar';
 
 
 @NgModule({

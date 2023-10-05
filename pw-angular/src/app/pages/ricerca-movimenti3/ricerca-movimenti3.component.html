@@ -1,7 +1,7 @@
 
 
 
-        <div class="row m-4">
+        <div class="row m-2">
 
           <div class="col-md-12">
             <app-line-chart  [labels]="labels" [data]="data"></app-line-chart>
@@ -10,7 +10,7 @@
         </div>
 
 
-        <div class="card overflow-hidden">
+        <div class="card overflow-hidden m-3 p-2">
 
             <app-do-transaction-form
             [types]="(types$ | async)!"
@@ -24,7 +24,7 @@
             (emitTransfer)="doTransfer($event)"
             ></app-do-transaction-form>
 
-          <app-paginator-ricerca-movimenti [transactionList]=" transactionList" [displayedColumns]="['createdAt','amount','transactionType', 'description']"></app-paginator-ricerca-movimenti>
+          <app-paginator-ricerca-movimenti [transactionList]=" transactionList" [displayedColumns]="['createdAt','amount','transactionType', 'description', 'actions']"></app-paginator-ricerca-movimenti>
 
 
         </div>

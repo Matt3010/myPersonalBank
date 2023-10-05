@@ -1,12 +1,11 @@
 import { Component, OnDestroy } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Login } from 'src/app/interfaces/login';
 import { AuthService } from 'src/app/services/auth.service';
 import { FontService } from 'src/app/services/utils/font.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormControl, Validators } from '@angular/forms';
-import { TransactionService } from 'src/app/services/transaction.service';
 
 
 @Component({
@@ -35,7 +34,7 @@ export class LoginComponent implements OnDestroy {
         },
       (err)=>{
         if(err){
-          this._snackBar.open(this.fontSrv.capitalize(err.error.message), "OK")
+          this._snackBar.open(this.fontSrv.capitalize(err.error.message), "OK", )
           }
       }
     )
@@ -57,10 +56,14 @@ export class LoginComponent implements OnDestroy {
     if(this.email.valid){
       this.authSrv.sendEmail(this.email.value!).subscribe(
         res=>{
-         this._snackBar.open("Email sent successfully", "Ok")
+         this._snackBar.open("Email sent successfully", "Ok",  {
+            duration: 3000,
+          })
         },
         err=>{
-         this._snackBar.open(err.error.message, "Ok")
+         this._snackBar.open(err.error.message, "Ok",  {
+            duration: 3000,
+          })
 
         }
       )

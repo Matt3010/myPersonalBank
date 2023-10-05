@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import BankAccounts from 'src/app/interfaces/bankAccounts';
 import { TransactionType } from 'src/app/interfaces/transactionType';
 import { User } from 'src/app/services/auth.service';
+import { omit, omitBy } from 'lodash';
 
 
 
@@ -115,8 +116,9 @@ export class DoTransactionFormComponent implements OnInit {
       value => {
         console.log(value)
       });
-
   }
+
+
 
   openParentModal() {
     this.newTransactionForm.reset()

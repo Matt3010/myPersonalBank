@@ -43,7 +43,7 @@ ngOnChanges(changes: SimpleChanges): void {
           data: takeRight(reverse([...this.data.map(value => parseFloat(value))]),this.last),
           fill: true,
           borderColor: '#8955fd',
-          tension: 0.4,
+          tension: 0.2,
           backgroundColor: ['#e9dfff'], // Assegna il gradiente come sfondo
 
         }]
@@ -54,14 +54,15 @@ ngOnChanges(changes: SimpleChanges): void {
           x: {
             grid: {
               display: false
-            }
+            },
           },
           y: {
             display: false,
             grid: {
               display: true
-            },
-
+            },ticks: {
+            stepSize: 10000000
+    }
           }
         },
         plugins:{
@@ -70,7 +71,7 @@ ngOnChanges(changes: SimpleChanges): void {
          },
 
       }
-      }
+      },
 
 
 
